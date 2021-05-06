@@ -38,6 +38,7 @@ public class CursoTutor implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="idCurso", nullable=false)
 	private Curso curso;
+	
 
 	public CursoTutor() {
 		super();

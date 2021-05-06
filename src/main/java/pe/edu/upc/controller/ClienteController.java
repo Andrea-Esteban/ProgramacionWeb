@@ -45,6 +45,7 @@ public class ClienteController implements Serializable {
 	{
 		mService.insertar(cliente);
 		limpiarCliente();
+		this.listar();
 	}
 	
 	public void listar()

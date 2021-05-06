@@ -33,7 +33,7 @@ public class TutorDaoImpl implements ITutorDao, Serializable{
 	public List<Tutor> listar() {
 		
 		List<Tutor> lista= new ArrayList<Tutor>();
-		Query q= em.createQuery("select m from Cliente m");
+		Query q= em.createQuery("select m from Tutor m");
 		lista = (List<Tutor>) q.getResultList();
 		return lista;
 		
@@ -45,7 +45,7 @@ public class TutorDaoImpl implements ITutorDao, Serializable{
 	public void eliminar(int idTutor) {
 		
 		Tutor tutor=new Tutor();
-		tutor= em.getReference(Tutor.class, tutor);
+		tutor= em.getReference(Tutor.class, idTutor);
 		em.remove(tutor);
 		
 	}

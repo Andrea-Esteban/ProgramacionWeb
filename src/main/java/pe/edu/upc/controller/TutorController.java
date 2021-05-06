@@ -22,6 +22,7 @@ public class TutorController implements Serializable {
 	
 	@Inject
 	private ITutorService Tservice;
+	
 	private Tutor tutor;
 	List<Tutor> listaTutores;
 	
@@ -43,12 +44,14 @@ public class TutorController implements Serializable {
 	{
 		Tservice.insertar(tutor);
 		limpiarTutor();
+		this.listar();
 	}
 	
 	
 	public void listar()
 	{
 		listaTutores=Tservice.listar();
+		
 	}
 	
 	public void limpiarTutor()

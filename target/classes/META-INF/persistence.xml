@@ -14,7 +14,7 @@
 
 				name="javax.persistence.schema-generation.database.action"
 
-				value="drop-and-create" />
+				value="update" />
 
 		</properties>
 
