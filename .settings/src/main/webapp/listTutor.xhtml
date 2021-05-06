@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html 	
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+		
+<ui:composition template="master.xhtml"> 
+	
+	<ui:define name="title">
+		.:Listado de Tutores:.
+	</ui:define>
+	
+	<ui:define name="titleCont">
+		<span>Listado de tutores</span>
+	</ui:define>
+	
+	<ui:define name="content">
+		<h:form>
+		
+			<div class="row" align="left">		
+				<div class="row">
+				
+				
+					<div class="col-sm-8 text-right">
+						<div class="form-group box-main-btn">
+							<h:outputLabel for="name" value="Búsqueda"
+								styleClass="control-label" />
+							<p:inputText autocomplete="off" id="name"
+								styleClass="form-control"
+								value="#{tutorController.tutor.nombreTutor}" maxlength="45" />
+							
+							<span style="display: block; height:150px; "></span>				
+							<p:commandButton value="Nuevo"						
+								action="#{tutorController.nuevoTutor()}"
+								styleClass="btn btn-primary ajax=false" />
+							
+							
+								
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group table-responsive box-table-class">
+						
+						<p:commandButton value="Buscar" update="lstTutor"
+									actionListener="#{tutorController.findByName()}"
+									styleClass="btn btn-danger" ajax="true" />
+						
+						<p:dataTable id="lstTutor" var="tut"
+							value="#{tutorController.listaTutores}" paginator="true"
+							paginatorPosition="top" rowsPerPageTemplate="10,20,30,40,50"
+							rows="10" styleClass="table table-bordered"
+							emptyMessage="No existen registros" rowIndexVar="item"
+							style="margin-bottom:0">
+							
+							
+
+							<p:column headerText="Nombre tutor:" sortBy="#{tut.nombreTutor}">
+								<h:outputText value="#{tut.nombreTutor}" />
+							</p:column>
+
+							<p:column headerText="Carrera" sortBy="#{tut.carreraUniTutor}">
+								<h:outputText value="#{tut.carreraUniTutor}" />
+							</p:column>
+							
+							<p:column headerText="Universidad" sortBy="#{tut.nombreUniTutor}">
+								<h:outputText value="#{tut.nombreUniTutor}" />
+							</p:column>
+							
+							<p:column headerText="Correo" sortBy="#{tut.correoTutor}">
+								<h:outputText value="#{tut.correoTutor}" />
+							</p:column>
+							<p:column headerText="Contraseña" sortBy="#{tut.contraseñaTutor}">
+								<h:outputText value="#{tut.contraseñaTutor}" />
+							</p:column>
+							<p:column headerText="DNI" sortBy="#{tut.dniTutor}">
+								<h:outputText value="#{tut.dniTutor}" />
+							</p:column>
+							<p:column headerText="Apellido" sortBy="#{tut.apellidoTutor}">
+								<h:outputText value="#{tut.apellidoTutor}" />
+							</p:column>
+							
+							<p:column headerText="Telefono" sortBy="#{tut.telefonoTutor}">
+								<h:outputText value="#{tut.telefonoTutor}" />
+						
+							</p:column>
+							
+							<p:column headerText="Operación" exportable="false">
+                                <h:commandLink action="listTutor" value="Eliminar"
+                                    actionListener="#{tutorController.eliminar(tut)}" />
+                            </p:column>
+
+						</p:dataTable>
+						
+					</div>
+				</div>				
+			</div>									
+		</h:form>
+	</ui:define>
+	
+	<ui:define name="footerCont">
+	</ui:define>
+		
+</ui:composition> 
+</html>
+ 
