@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Clientes:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Agregar Cliente</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="idCliente" value="Id " styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="idcliente"
+				styleClass="form-control" value="#{clienteController.cliente.idCliente}"
+				required="true" />
+			<h:outputLabel for="correoCliente" value="Correo"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="correocliente"
+				styleClass="form-control"
+				value="#{clienteController.cliente.correoCliente}" maxlength="30"
+				required="true" />
+			<h:outputLabel for="contraseñaCliente" value="Contraseña"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="contraseñacliente"
+				styleClass="form-control"
+				value="#{clienteController.cliente.contraseñaCliente}" maxlength="30"
+				required="true" />
+			<h:outputLabel for="dnicliente" value="DNI " styleClass="control-label" />
+			<p:inputText autocomplete="off" id="dnicliente"
+				styleClass="form-control" value="#{clienteController.cliente.dniCliente}"
+				maxlength="30" required="true" />
+			<h:outputLabel for="nambrecliente" value="Nombre "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="nambrecliente"
+				styleClass="form-control"
+				value="#{clienteController.cliente.nombreCliente}" maxlength="30"
+				required="true" />
+
+			<h:outputLabel for="apellidocliente" value="Apellido "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="apellidocliente"
+				styleClass="form-control"
+				value="#{clienteController.cliente.apellidoCliente}" maxlength="30"
+				required="true" />
+
+			<h:outputLabel for="telefonocliente" value="Telefono "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="telefonocliente"
+				styleClass="form-control"
+				value="#{clienteController.cliente.telefonoCliente}" maxlength="30"
+				required="true" />
+
+			<h:outputLabel for="nombreuniCliente" value="Universidad "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="nombreuniCliente"
+				styleClass="form-control"
+				value="#{clienteController.cliente.nombreUniCliente}" maxlength="30"
+				required="true" />
+
+			<h:outputLabel for="carreraUniCliente" value="Carrera "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="carreraUniCliente"
+				styleClass="form-control"
+				value="#{clienteController.cliente.carreraUniCliente}" maxlength="30"
+				required="true" />
+
+			<br />
+
+			<p:commandButton value="Grabar"
+				actionListener="#{clienteController.insertar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listCliente?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listCliente?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>
