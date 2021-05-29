@@ -16,7 +16,7 @@ import pe.edu.upc.spring.service.ITutorService;
 
 @Controller
 @RequestMapping("/tutor")
-public class ClienteController {
+public class PagoController {
 
 	@Autowired
 	private ITutorService tService;
@@ -69,20 +69,20 @@ public class ClienteController {
 	public String eliminar(Map<String, Object> model, @RequestParam(value="id") Integer id) {
 		try {
 			if (id!=null && id>0) {
-				cService.eliminar(id);
-				model.put("listaClientes", cService.listar());
+				tService.eliminar(id);
+				model.put("listaTutores", tService.listar());
 			}
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje", "Ocurrio un error");
-			model.put("listaClientes", cService.listar());
+			model.put("listaTutor", tService.listar());
 		}
-		return "listCliente";
+		return "listTutor";
 		}
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
-		model.put("listaClientes", cService.listar());
-		return "listCliente";
+		model.put("listaTutores", tService.listar());
+		return "listTutor";
 	}
 }
