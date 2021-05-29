@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sun.el.parser.ParseException;
-import pe.edu.upc.spring.model.Tutor;
-import pe.edu.upc.spring.service.ITutorService;
+import pe.edu.upc.spring.model.Cliente;
+import pe.edu.upc.spring.service.IClienteService;
 
 @Controller
-@RequestMapping("/tutor")
+@RequestMapping("/cliente")
 public class ClienteController {
 
 	@Autowired
-	private ITutorService tService;
+	private IClienteService cService;
 
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
@@ -27,41 +27,41 @@ public class ClienteController {
 	}
 
 	@RequestMapping("/")
-	public String irPaginaListadoTutores(Map<String, Object> model) {
-		model.put("listaTutores", tService.listar());
-		return "listTutor";
+	public String irPaginaListadoClientes(Map<String, Object> model) {
+		model.put("listaClientes", cService.listar());
+		return "listCliente";
 	}
 
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
-		model.addAttribute("tutor", new Tutor());
-		return "tutor";
+		model.addAttribute("cliente", new Cliente());
+		return "cliente";
 	}
 
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Tutor objTutor, BindingResult binRes, Model model) throws ParseException {
+	public String registrar(@ModelAttribute Cliente objCliente, BindingResult binRes, Model model) throws ParseException {
 		if (binRes.hasErrors())
-			return "tutor";
+			return "cliente";
 		else {
-			boolean flag = tService.insertar(objTutor);
+			boolean flag = cService.insertar(objCliente);
 			if (flag)
-				return "redirect:/tutor/listar";
+				return "redirect:/cliente/listar";
 			else {
 				model.addAttribute("mensaje", "Ocurrió un error");
-				return "redirect:/tutor/irRegistrar";
+				return "redirect:/cliente/irRegistrar";
 			}
 		}
 	}
 
 	@RequestMapping("/modificar/{id}")
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) throws ParseException {
-		Optional<Tutor> objTutor = tService.listarId(id);
-		if (objTutor == null) {
+		Optional<Cliente> objCliente = cService.listarId(id);
+		if (objCliente == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
-			return "redirect:/tutor/listar";
+			return "redirect:/cliente/listar";
 		} else {
-			model.addAttribute("tutor", objTutor);
-			return "tutor";
+			model.addAttribute("cliente", objCliente);
+			return "cliente";
 		}
 	}
 	
