@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+		<meta charset="UTF-8"></meta>
+		<title>Razas</title>		
+		
+		<script type="text/javascript"
+				src="ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js">
+		</script>
+		
+		<link
+			href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+			rel="stylesheet" id="bootstrap-css">
+		</link>
+			
+		<script
+			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+		</script>
+				
+		<script src="//code.jquery.com/jquery-1.11.1.min.js">
+		</script>
+
+	</head>
+	<body>
+		<div th:replace="fragments/header :: header" ></div>
+		<div class="container">
+			<form id="myform">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<a style="border-bottom-color: green" th:href="@{/race/irRegistrar}"
+							id="add-row" type="button" class="btn btn-primary btn-md left-block">
+							<span class="glyphicon gliphicon-plus"></span>Raza
+						</a>
+						<a style="border-bottom-color: green" th:href="@{/race/irBuscar}"
+							id="add-row" type="button" class="btn btn-primary btn-md left-block">
+							<span class="glyphicon gliphicon-search">Buscar</span>
+						</a>
+						
+						<table class="table table-bordered table-hover table-striped" id="tab_logic"> 
+							<thead>
+								<tr>
+									<th class="text-center">CODIGO</th>
+									<th class="text-center">RAZA</th>
+									<th class="text-center">OPERACION</th>
+									<th class="text-center">OPERACION</th>
+								</tr>
+							</thead>
+								<tbody>
+									<tr th:each="rac: ${listaRazas}"> 
+										<td th:text="${rac.idRace}"></td>
+										<td th:text="${rac.nameRace}"></td>
+										<td><a th:href="@{/race/eliminar?id=}+${rac.idRace}">Eliminar</a></td>
+										<td><a th:href="@{'/race/modificar/'}+${rac.idRace}">Modificar</a></td>
+						
+									</tr>							
+								</tbody>
+						</table>
+					</div> 
+				</div>
+				<div th:if="${mensaje}" class="alet alert-danger">
+					<p th:text="${mensaje}"></p>
+				</div>
+			</form>
+		</div>
+		<div th:replace="fragments/footer :: footer" ></div>	
+	</body>
+</html>

@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Tutor")
+@Table(name = "tutor")
 public class Tutor implements Serializable{
 	private static final long serialVersionUID = 1L;
 
@@ -18,40 +18,40 @@ public class Tutor implements Serializable{
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idTutor;
 
-	@Column(name="Correo Electronico", nullable=false, length=50)
+	@Column(name="correo_electronico", nullable=false, length=50)
 	private String correo;
 	
-	@Column(name="Contraseña", nullable=false, length=50)
-	private String contraseña;
+	@Column(name="contrasena", nullable=false, length=50)
+	private String contrasena;
 	
-	@Column(name="Nombre", nullable=false, length=50)
+	@Column(name="nombre", nullable=false, length=50)
 	private String nombre;
 	
-	@Column(name="Apellido", nullable=false, length=50)
+	@Column(name="apellido", nullable=false, length=50)
 	private String apellido;
 
-	@Column(name="Dni", nullable=false, length=9)
+	@Column(name="dni", nullable=false, length=9)
 	private int dni;
 	
-	@Column(name="Telefono", nullable=false, length=9)
+	@Column(name="telefono", nullable=false, length=9)
 	private int telefono;
 	
-	@Column(name="Nombre de la univerdidad", nullable=false, length=60)
+	@Column(name="nombre_de_la_univerdidad", nullable=false, length=60)
 	private String nombre_uni;
 	
-	@Column(name="Carrera universitaria", nullable=false, length=60)
+	@Column(name="carrera_universitaria", nullable=false, length=60)
 	private String carrera_uni;
 
 	public Tutor() {
 		super();
 	}
 
-	public Tutor(int idTutor, String correo, String contraseña, String nombre, String apellido, int dni, int telefono,
+	public Tutor(int idTutor, String correo, String contrasena, String nombre, String apellido, int dni, int telefono,
 			String nombre_uni, String carrera_uni) {
 		super();
 		this.idTutor = idTutor;
 		this.correo = correo;
-		this.contraseña = contraseña;
+		this.contrasena = contrasena;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;
@@ -76,12 +76,12 @@ public class Tutor implements Serializable{
 		this.correo = correo;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasena() {
+		return contrasena;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
 	public String getNombre() {
@@ -131,7 +131,6 @@ public class Tutor implements Serializable{
 	public void setCarrera_uni(String carrera_uni) {
 		this.carrera_uni = carrera_uni;
 	}
-
 
 
 

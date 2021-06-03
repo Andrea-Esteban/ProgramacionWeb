@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CursoTutor")
+@Table(name = "cursotutor")
 public class CursoTutor implements Serializable{
 	private static final long serialVersionUID = 1L;
 
@@ -18,12 +18,12 @@ public class CursoTutor implements Serializable{
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idCursoTutor;
 
-	@Column(name="Nota", nullable=false, length=2)
+	@Column(name="nota", nullable=false, length=2)
 	private String nota;
 	
 	
 	
-	@Column(name="Costo por hora", nullable=false, length=3)
+	@Column(name="costo_por_hora", nullable=false, length=3)
 	private String costoHora;
 
 

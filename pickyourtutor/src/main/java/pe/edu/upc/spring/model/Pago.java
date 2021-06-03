@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Tutor")
+@Table(name = "tutor")
 public class Pago implements Serializable{
 	private static final long serialVersionUID = 1L;
 
@@ -19,10 +19,10 @@ public class Pago implements Serializable{
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idTutor;
 
-	@Column(name="Monto", nullable=false, length=50)
+	@Column(name="monto", nullable=false, length=50)
 	private String monto;
 
-	@Column(name="Fecha", nullable=false, length=50)
+	@Column(name="fecha", nullable=false, length=50)
 	private Date fecha;
 
 	public Pago() {

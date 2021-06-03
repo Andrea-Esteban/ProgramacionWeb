@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "MetodoPago")
+@Table(name = "metodopago")
 
 public class MetodoPago implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -20,10 +20,10 @@ public class MetodoPago implements Serializable {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idMetodo;
 	
-	@Column(name= "Nombre", nullable= false, length=50)
+	@Column(name= "nombre", nullable= false, length=50)
 	private String nombre;
 	
-	@Column(name= "id_Clase", nullable= false, length= 50)
+	@Column(name= "id_clase", nullable= false, length= 50)
 	private int id_Clase;
 	
 	public MetodoPago() {

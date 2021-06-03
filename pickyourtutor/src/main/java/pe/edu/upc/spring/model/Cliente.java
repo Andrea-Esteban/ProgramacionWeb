@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Cliente")
+@Table(name = "clientes")
 public class Cliente implements Serializable{
 	private static final long serialVersionUID = 1L;
 
@@ -18,28 +18,28 @@ public class Cliente implements Serializable{
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idCliente;
 
-	@Column(name="Correo Electronico", nullable=false, length=50)
+	@Column(name="correo_electronico", nullable=false, length=50)
 	private String correo;
 	
-	@Column(name="Contraseña", nullable=false, length=50)
-	private String contraseña;
+	@Column(name="contrasena", nullable=false, length=50)
+	private String contrasena;
 	
-	@Column(name="Nombre", nullable=false, length=50)
+	@Column(name="nombre", nullable=false, length=50)
 	private String nombre;
 	
-	@Column(name="Apellido", nullable=false, length=50)
+	@Column(name="apellido", nullable=false, length=50)
 	private String apellido;
 
-	@Column(name="Dni", nullable=false, length=9)
+	@Column(name="dni", nullable=false, length=9)
 	private int dni;
 	
-	@Column(name="Telefono", nullable=false, length=9)
+	@Column(name="telefono", nullable=false, length=9)
 	private int telefono;
 	
-	@Column(name="Nombre de la univerdidad", nullable=false, length=50)
+	@Column(name="nombre_de_la_universidad", nullable=false, length=50)
 	private String nombre_uni;
 	
-	@Column(name="Carrera universitaria", nullable=false, length=50)
+	@Column(name="carrera_universitaria", nullable=false, length=50)
 	private String carrera_uni;
 
 	public Cliente() {
@@ -47,12 +47,12 @@ public class Cliente implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cliente(int idCliente, String correo, String contraseña, String nombre, String apellido, int dni,
+	public Cliente(int idCliente, String correo, String contrasena, String nombre, String apellido, int dni,
 			int telefono, String nombre_uni, String carrera_uni) {
 		super();
 		this.idCliente = idCliente;
 		this.correo = correo;
-		this.contraseña = contraseña;
+		this.contrasena = contrasena;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;
@@ -77,12 +77,12 @@ public class Cliente implements Serializable{
 		this.correo = correo;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasena() {
+		return contrasena;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
 	public String getNombre() {

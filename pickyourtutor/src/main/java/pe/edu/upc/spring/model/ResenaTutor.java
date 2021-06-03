@@ -21,7 +21,7 @@ public class ResenaTutor implements Serializable {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)	
 	private int idReseña;
 	
-	@Column(name= "Valoracion", nullable= false, length= 10)
+	@Column(name= "valoracion", nullable= false, length= 10)
 	private int valoracion;
 	
 	@Column(name= "idTutor", nullable= false, length= 10)

@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "SolicitudClase")
+@Table(name = "solicitudclase")
 public class SolicitudClase implements Serializable{
 	private static final long serialVersionUID = 1L;
 
@@ -29,23 +29,23 @@ public class SolicitudClase implements Serializable{
     @JoinColumn(name = "id_Curso", nullable = false)
     private Curso curso;
 
-	@Column(name="Dia Clase", nullable=false, length=50)
+	@Column(name="dia_clase", nullable=false, length=50)
 	private String diaClase;
 	
-	@Column(name="Hora Clase", nullable=false, length=50)
+	@Column(name="hora_clase", nullable=false, length=50)
 	private String horaClase;
 	
 	
-	@Column(name="Fecha Clase", nullable=false, length=50)
+	@Column(name="fecha_clase", nullable=false, length=50)
 	private String fechaClase;
 	
-	@Column(name="Cantidad de hora por Curso", nullable=false, length=50)
+	@Column(name="cantidad_de_hora_por_curso", nullable=false, length=50)
 	private String horasCurso;
 	
-	@Column(name="Link Clase", nullable=false, length=50)
+	@Column(name="link_clase", nullable=false, length=50)
 	private String linkClase;
 
-	@Column(name="Estado  Solicutud", nullable=false, length=50)
+	@Column(name="estado_solicutud", nullable=false)
 	private boolean estadoSolicitud;
 
 	public SolicitudClase() {
