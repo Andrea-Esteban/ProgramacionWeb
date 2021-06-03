@@ -15,8 +15,4 @@ public interface IResenaTutorRepository extends JpaRepository<ResenaTutor, Integ
 	@Query("From ResenaTutor c where c.valoracion like %:valoracion%")
 	List<ResenaTutor> buscarValoracion(@Param("valoracion") int valoracion);
 
-	
-	
-	
-	
 }

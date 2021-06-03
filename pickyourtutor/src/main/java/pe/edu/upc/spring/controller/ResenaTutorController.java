@@ -15,7 +15,12 @@ import com.sun.el.parser.ParseException;
 
 
 import pe.edu.upc.spring.model.ResenaTutor;
+import pe.edu.upc.spring.model.Tutor;
+import pe.edu.upc.spring.model.Cliente;
+
 import pe.edu.upc.spring.service.IResenaTutorService;
+import pe.edu.upc.spring.service.IClienteService;
+import pe.edu.upc.spring.service.ITutorService;
 
 @Controller
 @RequestMapping("/resenatutor")
@@ -23,6 +28,10 @@ public class ResenaTutorController {
 
 	@Autowired
 	private IResenaTutorService cService;
+	@Autowired
+	private IClienteService clService;
+	@Autowired
+	private ITutorService tService;
 
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
@@ -37,15 +46,22 @@ public class ResenaTutorController {
 
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
+		model.addAttribute("listaClientes", clService.listar());
+		model.addAttribute("listaTutores", tService.listar());
 		model.addAttribute("resena", new ResenaTutor());
+		model.addAttribute("cliente", new Cliente());
+		model.addAttribute("tutor", new Tutor());
+
 		return "resena";
 	}
 	
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute ResenaTutor objResena, BindingResult binRes, Model model) throws ParseException {
-		if (binRes.hasErrors())
+		if (binRes.hasErrors()) {
+			model.addAttribute("listaClientes", clService.listar());
+			model.addAttribute("listaTutores", tService.listar());
 			return "resena";
-		else {
+		}else {
 			boolean flag = cService.insertar(objResena);
 			if (flag)
 				return "redirect:/resena/listar";
@@ -63,7 +79,10 @@ public class ResenaTutorController {
 			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
 			return "redirect:/resena/listar";
 		} else {
-			model.addAttribute("resena", objResena);
+			model.addAttribute("listaClientes", clService.listar());
+			model.addAttribute("listaTutores", tService.listar());
+			if (objResena.isPresent())
+				objResena.ifPresent(o -> model.addAttribute("resena", o));
 			return "resena";
 		}
 	}
@@ -89,19 +108,6 @@ public class ResenaTutorController {
 		return "listResenas";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 }

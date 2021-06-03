@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -24,19 +26,25 @@ public class ResenaTutor implements Serializable {
 	@Column(name= "valoracion", nullable= false, length= 10)
 	private int valoracion;
 	
-	@Column(name= "idTutor", nullable= false, length= 10)
-	private int id_Tutor;
+	@ManyToOne
+	@JoinColumn(name = "idCliente", nullable = false)
+	private Cliente cliente;
+	
+	@ManyToOne
+	@JoinColumn(name = "idTutor", nullable = false)
+	private Tutor tutor;
 
 	public ResenaTutor() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public ResenaTutor(int idReseña, int valoracion, int id_Tutor) {
+	public ResenaTutor(int idReseña, int valoracion, Cliente cliente, Tutor tutor) {
 		super();
 		this.idReseña = idReseña;
 		this.valoracion = valoracion;
-		this.id_Tutor = id_Tutor;
+		this.cliente = cliente;
+		this.tutor = tutor;
 	}
 
 	public int getIdReseña() {
@@ -55,16 +63,22 @@ public class ResenaTutor implements Serializable {
 		this.valoracion = valoracion;
 	}
 
-	public int getId_Tutor() {
-		return id_Tutor;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setId_Tutor(int id_Tutor) {
-		this.id_Tutor = id_Tutor;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
-	
-	
-	
+
+	public Tutor getTutor() {
+		return tutor;
+	}
+
+	public void setTutor(Tutor tutor) {
+		this.tutor = tutor;
+	}
+
 	
 	
 	

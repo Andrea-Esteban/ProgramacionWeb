@@ -52,14 +52,14 @@ public class ResenaTutorImpl implements IResenaTutorService {
 	}
 
 	@Override
-	@Transactional(readOnly = true)
+	@Transactional
 	public List<ResenaTutor> listar() {
 		return dResena.findAll();
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<ResenaTutor> buscarNombre(int valoracion) {
+	public List<ResenaTutor> buscarValoracion(int valoracion) {
 		return dResena.buscarValoracion(valoracion);
 	}
 }

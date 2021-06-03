@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,7 +28,10 @@ public class CursoTutor implements Serializable{
 	@Column(name="costo_por_hora", nullable=false, length=3)
 	private String costoHora;
 
-
+	@OneToOne
+	@JoinColumn(name = "idCurso", nullable = false)
+	private Curso curso;
+	
 
 	public CursoTutor() {
 		super();
@@ -34,14 +39,13 @@ public class CursoTutor implements Serializable{
 	}
 
 
-
-	public CursoTutor(int idCursoTutor, String nota, String costoHora) {
+	public CursoTutor(int idCursoTutor, String nota, String costoHora, Curso curso) {
 		super();
 		this.idCursoTutor = idCursoTutor;
 		this.nota = nota;
 		this.costoHora = costoHora;
+		this.curso = curso;
 	}
-
 
 
 	public int getIdCursoTutor() {
@@ -49,11 +53,9 @@ public class CursoTutor implements Serializable{
 	}
 
 
-
 	public void setIdCursoTutor(int idCursoTutor) {
 		this.idCursoTutor = idCursoTutor;
 	}
-
 
 
 	public String getNota() {
@@ -61,11 +63,9 @@ public class CursoTutor implements Serializable{
 	}
 
 
-
 	public void setNota(String nota) {
 		this.nota = nota;
 	}
-
 
 
 	public String getCostoHora() {
@@ -73,14 +73,20 @@ public class CursoTutor implements Serializable{
 	}
 
 
-
 	public void setCostoHora(String costoHora) {
 		this.costoHora = costoHora;
 	}
 
 
-	
-	
+	public Curso getCurso() {
+		return curso;
+	}
+
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
+
 
 	
 }

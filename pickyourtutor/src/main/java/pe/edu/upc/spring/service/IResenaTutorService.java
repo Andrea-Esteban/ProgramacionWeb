@@ -13,6 +13,6 @@ public interface IResenaTutorService {
 	public void eliminar(int idReseña);
 	public Optional<ResenaTutor> listarId(int idReseña);
 	List<ResenaTutor> listar();
-	List<ResenaTutor> buscarNombre(int valoracion);
-	
+	List<ResenaTutor> buscarValoracion(int valoracion);
+
 }

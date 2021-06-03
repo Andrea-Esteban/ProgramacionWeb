@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sun.el.parser.ParseException;
+
 import pe.edu.upc.spring.model.CursoTutor;
+import pe.edu.upc.spring.model.Curso;
+
 import pe.edu.upc.spring.service.ICursoTutorService;
+import pe.edu.upc.spring.service.ICursoService;
 
 @Controller
 @RequestMapping("/cursotutor")
@@ -20,6 +24,8 @@ public class CursoTutorController {
 
 	@Autowired
 	private ICursoTutorService curtuService;
+	@Autowired
+	private ICursoService cService;
 
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
@@ -34,15 +40,18 @@ public class CursoTutorController {
 
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
+		model.addAttribute("listaCursos", cService.listar());
+		model.addAttribute("curso", new Curso());
 		model.addAttribute("cursotutor", new CursoTutor());
 		return "cursotutor";
 	}
 
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute CursoTutor objCursoTutor, BindingResult binRes, Model model) throws ParseException {
-		if (binRes.hasErrors())
+		if (binRes.hasErrors()) {
+			model.addAttribute("listaCursos", cService.listar());
 			return "cursotutor";
-		else {
+		}else {
 			boolean flag = curtuService.insertar(objCursoTutor);
 			if (flag)
 				return "redirect:/cursotutor/listar";
@@ -60,7 +69,10 @@ public class CursoTutorController {
 			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
 			return "redirect:/cursotutor/listar";
 		} else {
-			model.addAttribute("cursotutor", objCursoTutor);
+			model.addAttribute("listaCursos", cService.listar());
+			if (objCursoTutor.isPresent())
+				objCursoTutor.ifPresent(o -> model.addAttribute("pet", o));
+
 			return "cursotutor";
 		}
 	}
