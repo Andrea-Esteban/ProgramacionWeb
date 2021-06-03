@@ -13,5 +13,7 @@ public interface ISolicitudClaseService {
 	public void eliminar(int idSolicitudClase);
 	public Optional<SolicitudClase> listarId(int idSolicitudClase);
 	List<SolicitudClase> listar();
+	List<SolicitudClase> listarNombreTutor(String nombre);
+	List<SolicitudClase> listarNombreCurso(String nombreCurso);
 	
 }

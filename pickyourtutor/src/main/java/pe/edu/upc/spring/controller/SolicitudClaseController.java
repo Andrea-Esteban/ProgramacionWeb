@@ -1,4 +1,5 @@
 package pe.edu.upc.spring.controller;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sun.el.parser.ParseException;
+
 import pe.edu.upc.spring.model.SolicitudClase;
+import pe.edu.upc.spring.model.Tutor;
 import pe.edu.upc.spring.service.ISolicitudClaseService;
 
 @Controller
@@ -85,4 +88,31 @@ public class SolicitudClaseController {
 		model.put("listaSolicitudClase", soliService.listar());
 		return "listSolicitudClase";
 	}
+	
+	@RequestMapping("/irBuscar")
+    public String buscar(Model model) {
+        model.addAttribute("SolicitudClase", new SolicitudClase());
+        return "buscar";
+    }
+	
+	@RequestMapping("/buscar")
+    public String findBy(Map<String, Object> model, @ModelAttribute SolicitudClase solicitudClase)
+    throws ParseException{
+        List<SolicitudClase> listaSolicitudClase;
+        Tutor  tutor = new Tutor();
+        tutor.setNombre(solicitudClase.getTutor().getNombre());
+        solicitudClase.setTutor(tutor);
+        listaSolicitudClase = soliService.listarNombreTutor(solicitudClase.getTutor().getNombre());
+        if(listaSolicitudClase.isEmpty()) {
+        	listaSolicitudClase = soliService.listarNombreCurso(solicitudClase.getTutor().getNombre());
+        }
+        if (listaSolicitudClase.isEmpty()) {
+            model.put("mensaje", "No se encontraron coincidencias");
+        }
+        model.put("listaSolicitudClase", listaSolicitudClase);
+        return "buscar";
+    }
+
+    
+	
 }
