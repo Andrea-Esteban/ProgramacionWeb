@@ -15,7 +15,7 @@ import pe.edu.upc.spring.model.Cliente;
 import pe.edu.upc.spring.service.IClienteService;
 
 @Controller
-@RequestMapping("/cliente")
+@RequestMapping("cliente/cliente")
 public class ClienteController {
 
 	@Autowired
@@ -83,6 +83,6 @@ public class ClienteController {
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
 		model.put("listaClientes", cService.listar());
-		return "listCliente";
+		return "cliente/listCliente";
 	}
 }
