@@ -29,19 +29,19 @@ public class CursoController {
 	@RequestMapping("/")
 	public String irPaginaListadoTutores(Map<String, Object> model) {
 		model.put("listaCursos", curService.listar());
-		return "listCurso";
+		return "curso/listCurso";
 	}
 
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
 		model.addAttribute("curso", new Curso());
-		return "curso";
+		return "curso/curso";
 	}
 
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute Curso objCurso, BindingResult binRes, Model model) throws ParseException {
 		if (binRes.hasErrors())
-			return "curso";
+			return "curso/curso";
 		else {
 			boolean flag = curService.insertar(objCurso);
 			if (flag)
@@ -61,7 +61,7 @@ public class CursoController {
 			return "redirect:/curso/listar";
 		} else {
 			model.addAttribute("curso", objCurso);
-			return "curso";
+			return "curso/curso";
 		}
 	}
 	
@@ -70,19 +70,19 @@ public class CursoController {
 		try {
 			if (id!=null && id>0) {
 				curService.eliminar(id);
-				model.put("listaCurso", curService.listar());
+				model.put("listaCursos", curService.listar());
 			}
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje", "Ocurrio un error");
 			model.put("listaCurso", curService.listar());
 		}
-		return "listCurso";
+		return "curso/listCurso";
 		}
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
-		model.put("listaCurso", curService.listar());
-		return "listCurso";
+		model.put("listaCursos", curService.listar());
+		return "curso/listCurso";
 	}
 }

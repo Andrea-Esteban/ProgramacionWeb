@@ -5,7 +5,7 @@
 		
 		<meta charset="ISO-8859-1"></meta>
 		
-		<title>Tutor</title>
+		<title>Curso</title>
 		
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		
@@ -17,7 +17,7 @@
 			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
 		</script>
 		
-		<script type="text/javascript" th:src="@{/js/cliente.js}"></script>
+		<script type="text/javascript" th:src="@{/js/curso.js}"></script>
 
 	</head>
 	
@@ -59,7 +59,7 @@
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item"
-							th:href="@{/matricula/docente/lista_docente}">Curso</a>
+							th:href="@{/curso/listar}">Curso</a>
 					</div>
 				</div>
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -134,73 +134,24 @@
 
 
 				<div class="container-fluid">
-					<form th:action="@{/cliente/registrar}" method="post" th:object="${cliente}">
+					<form th:action="@{/curso/registrar}" method="post" th:object="${curso}">
 						<div class="form-row col-6">
 							<div class="form-group col-md-12">
 								<h2 class="m-0 font-weight-bold text-dark">REGISTRO DE
-									CLIENTE</h2>
+									Cursos</h2>
 							</div>
 							<div class="form-group">
 					
-					<label for="idCliente">ID:</label> 
-					<input type="text" class="form-control" th:field="*{idCliente}"></input>
+					<label for="idCurso">ID:</label> 
+					<input type="text" class="form-control" th:field="*{idCurso}"></input>
 					
 					<div class="form-group">
 					
-						<label 	for="nombre">NOMBRE:</label> 
-						<input type="text" th:field="*{nombre}" class="form-control" id="nombre"></input>
+						<label 	for="nombreCurso">NOMBRE:</label> 
+						<input type="text" th:field="*{nombreCurso}" class="form-control" id="nombreCurso"></input>
 	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('nombre')}" 
-							th:errors="*{nombre}">
-						</div>
-						
-						<label 	for="apellido">APELLIDO:</label> 
-						<input type="text" th:field="*{apellido}" class="form-control" id="apellido"></input>
-	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('apellido')}" 
-							th:errors="*{apellido}">
-						</div>
-						
-						<label 	for="dni">DNI:</label> 
-						<input type="text" th:field="*{dni}" class="form-control" id="dni"></input>
-	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('dni')}" 
-							th:errors="*{dni}">
-						</div>
-						
-						<label 	for="telefono">TELEFONO:</label> 
-						<input type="text" th:field="*{telefono}" class="form-control" id="telefono"></input>
-	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('telefono')}" 
-							th:errors="*{telefono}">
-						</div>
-						
-						<label 	for="nombre_uni">NOMBRE DE LA UNIVERSIDAD:</label> 
-						<input type="text" th:field="*{nombre_uni}" class="form-control" id="nombre_uni"></input>
-	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('nombre_uni')}" 
-							th:errors="*{nombre_uni}">
-						</div>
-						
-						<label 	for="carrera_uni">CARRERA UNIVERSITARIA:</label> 
-						<input type="text" th:field="*{carrera_uni}" class="form-control" id="carrera_uni"></input>
-	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('carrera_uni')}" 
-							th:errors="*{carrera_uni}">
-						</div>
-						
-						<label 	for="correo">CORREO ELECTRONICO:</label> 
-						<input type="text" th:field="*{correo}" class="form-control" id="correo"></input>
-	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('correo')}" 
-							th:errors="*{correo}">
-						</div>
-						
-						<label 	for="contrasena">CONTRASENA:</label> 
-						<input type="text" th:field="*{contrasena}" class="form-control" id="contrasena"></input>
-	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('contrasena')}" 
-							th:errors="*{contrasena}">
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('nombreCurso')}" 
+							th:errors="*{nombreCurso}">
 						</div>
 						
 										
@@ -216,7 +167,7 @@
 							<button type="submit" class="btn btn-dark">
 								<i class="fas fa-save"></i> Grabar
 							</button>
-							<a th:href="@{/cliente/listar}"
+							<a th:href="@{/curso/listar}"
 								class="btn btn-danger"> Cancelar</a>
 						</div>
 					</form>

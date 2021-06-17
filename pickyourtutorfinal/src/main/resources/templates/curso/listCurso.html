@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
-	<head th:replace="layout/layout :: head">
-		
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
 		<meta charset="ISO-8859-1"></meta>
 		
 		<title>Tutor</title>
@@ -17,12 +16,10 @@
 			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
 		</script>
 		
-		<script type="text/javascript" th:src="@{/js/cliente.js}"></script>
-
-	</head>
-	
-	<body>
-<div id="wrapper">
+		<script type="text/javascript" th:src="@{/js/curso.js}"></script>
+</head>
+<body>
+	<div id="wrapper">
 
 		<ul class="navbar-nav sidebar sidebar-dark accordion"
 			id="accordionSidebar" style="background-color: #5CB1EE;">
@@ -32,7 +29,7 @@
 				<div class="sidebar-brand-icon">
 					<i class="fas fa-desktop"></i>
 				</div>
-				<div class="sidebar-brand-text mx-3">TUTOR</div>
+				<div class="sidebar-brand-text mx-3">CLIENTE</div>
 			</a>
 
 			<hr class="sidebar-divider my-0">
@@ -59,7 +56,7 @@
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item"
-							th:href="@{/matricula/docente/lista_docente}">Curso</a>
+							th:href="@{/curso/listar}">Curso</a>
 					</div>
 				</div>
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -97,6 +94,7 @@
 					</div>
 				</div>
 				</li>
+
 			<hr class="sidebar-divider">
 
 		</ul>
@@ -121,9 +119,9 @@
 								class="fas fa-user-circle fa-lg fa-fw mr-2 text-white"></i> </a>
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-								aria-labelledby="userDropdown" style="background: #BEE4FF">
-								<a class="dropdown-item" th:href="@{/login}"
-									style="background: #ffba6a"> <i
+								aria-labelledby="userDropdown" style="background: #ffba6a">
+								<a class="dropdown-item"
+									th:href="@{/login}" style="background: #BEE4FF"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-white"></i> <span
 									class="text-white">Cerrar sesi&oacute;n</span>
 								</a>
@@ -134,97 +132,44 @@
 
 
 				<div class="container-fluid">
-					<form th:action="@{/cliente/registrar}" method="post" th:object="${cliente}">
-						<div class="form-row col-6">
-							<div class="form-group col-md-12">
-								<h2 class="m-0 font-weight-bold text-dark">REGISTRO DE
-									CLIENTE</h2>
-							</div>
-							<div class="form-group">
-					
-					<label for="idCliente">ID:</label> 
-					<input type="text" class="form-control" th:field="*{idCliente}"></input>
-					
-					<div class="form-group">
-					
-						<label 	for="nombre">NOMBRE:</label> 
-						<input type="text" th:field="*{nombre}" class="form-control" id="nombre"></input>
-	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('nombre')}" 
-							th:errors="*{nombre}">
-						</div>
-						
-						<label 	for="apellido">APELLIDO:</label> 
-						<input type="text" th:field="*{apellido}" class="form-control" id="apellido"></input>
-	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('apellido')}" 
-							th:errors="*{apellido}">
-						</div>
-						
-						<label 	for="dni">DNI:</label> 
-						<input type="text" th:field="*{dni}" class="form-control" id="dni"></input>
-	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('dni')}" 
-							th:errors="*{dni}">
-						</div>
-						
-						<label 	for="telefono">TELEFONO:</label> 
-						<input type="text" th:field="*{telefono}" class="form-control" id="telefono"></input>
-	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('telefono')}" 
-							th:errors="*{telefono}">
-						</div>
-						
-						<label 	for="nombre_uni">NOMBRE DE LA UNIVERSIDAD:</label> 
-						<input type="text" th:field="*{nombre_uni}" class="form-control" id="nombre_uni"></input>
-	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('nombre_uni')}" 
-							th:errors="*{nombre_uni}">
-						</div>
-						
-						<label 	for="carrera_uni">CARRERA UNIVERSITARIA:</label> 
-						<input type="text" th:field="*{carrera_uni}" class="form-control" id="carrera_uni"></input>
-	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('carrera_uni')}" 
-							th:errors="*{carrera_uni}">
-						</div>
-						
-						<label 	for="correo">CORREO ELECTRONICO:</label> 
-						<input type="text" th:field="*{correo}" class="form-control" id="correo"></input>
-	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('correo')}" 
-							th:errors="*{correo}">
-						</div>
-						
-						<label 	for="contrasena">CONTRASENA:</label> 
-						<input type="text" th:field="*{contrasena}" class="form-control" id="contrasena"></input>
-	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('contrasena')}" 
-							th:errors="*{contrasena}">
-						</div>
-						
-										
-						
-					</div>
-					
+					<h1 class="h3 mb-4 text-gray-800">CURSOS REGISTRADOS</h1>
+
+					<a  style="border-bottom-color:blue" th:href="@{/curso/irRegistrar}" id="add-row" 
+							type="button"
+							class="btn btn-primary btn-md left-block"> <span
+							class="glyphicon glyphicon-plus" ></span> AGREGAR
+						</a>
+
+						<table class="table table-bordered table-hover table-striped" id="tab_logic">
+
+						<thead class="thead-dark">
+							<tr align="center">
+									<th class="text-center">CODIGO</th>
+									<th class="text-center">NOMBRE</th>
+																						
+									<th class="text-center">OPERACIÓN</th>
+									<th class="text-center">OPERACIÓN</th>
+							</tr>
+						</thead>
+						<tbody>
+								<tr th:each="cur: ${listaCursos}">
+									<td th:text="${cur.idCurso}"></td>
+									<td th:text="${cur.nombreCurso}"></td>
+									
+									
+									
+									<td><a th:href="@{/curso/eliminar?id=}+${cur.idCurso}">Eliminar</a></td>
+									<td><a th:href="@{'/curso/modificar/' + ${cur.idCurso}}">Modificar</a></td>
+								</tr>
+						</tbody>
+					</table>
+
 				</div>
 
 
-						</div>
-						<div class="form-group col-md-12 text-left">
-							<br>
-							<button type="submit" class="btn btn-dark">
-								<i class="fas fa-save"></i> Grabar
-							</button>
-							<a th:href="@{/cliente/listar}"
-								class="btn btn-danger"> Cancelar</a>
-						</div>
-					</form>
-				</div>
-				<footer th:replace="layout/layout :: footer"></footer>
 			</div>
+			<footer th:replace="layout/layout :: footer"></footer>
 		</div>
-
-	</body>
-	
+	</div>
+</body>
 </html>
