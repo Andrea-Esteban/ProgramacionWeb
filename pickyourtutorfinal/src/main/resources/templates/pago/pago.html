@@ -5,7 +5,7 @@
 		
 		<meta charset="ISO-8859-1"></meta>
 		
-		<title>CLIENTE</title>
+		<title>PAGO</title>
 		
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		
@@ -17,7 +17,7 @@
 			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
 		</script>
 		
-		<script type="text/javascript" th:src="@{/js/cliente.js}"></script>
+		<script type="text/javascript" th:src="@{/js/pago.js}"></script>
 
 	</head>
 	
@@ -134,77 +134,71 @@
 
 
 				<div class="container-fluid">
-					<form th:action="@{/cliente/registrar}" method="post" th:object="${cliente}">
+					<form th:action="@{/pago/registrar}" method="post" th:object="${pago}">
 						<div class="form-row col-6">
 							<div class="form-group col-md-12">
 								<h2 class="m-0 font-weight-bold text-dark">REGISTRO DE
-									CLIENTE</h2>
+									PAGOS</h2>
 							</div>
 							<div class="form-group">
 					
-					<label for="idCliente">ID:</label> 
-					<input type="text" class="form-control" th:field="*{idCliente}"></input>
+					<label for="idPago">ID:</label> 
+					<input type="text" class="form-control" th:field="*{idPago}"></input>
 					
 					<div class="form-group">
 					
-						<label 	for="nombre">NOMBRE:</label> 
-						<input type="text" th:field="*{nombre}" class="form-control" id="nombre"></input>
+						<label 	for="monto">MONTO:</label> 
+						<input type="text" th:field="*{monto}" class="form-control" id="monto"></input>
 	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('nombre')}" 
-							th:errors="*{nombre}">
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('monto')}" 
+							th:errors="*{monto}">
 						</div>
 						
-						<label 	for="apellido">APELLIDO:</label> 
-						<input type="text" th:field="*{apellido}" class="form-control" id="apellido"></input>
+					<label for="fecha">FECHA:</label> <input
+						type="date" th:field="*{fecha}" class="form-control"
+						id="fecha"></input>
+
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('fecha')}"
+						th:errors="*{fecha}"></div>
+						
+						<label 	for="numeroTarj">NUMERO DE TARJETA:</label> 
+						<input type="text" th:field="*{numeroTarj}" class="form-control" id="numeroTarj"></input>
 	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('apellido')}" 
-							th:errors="*{apellido}">
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('numeroTarj')}" 
+							th:errors="*{numeroTarj}">
 						</div>
 						
-						<label 	for="dni">DNI:</label> 
-						<input type="text" th:field="*{dni}" class="form-control" id="dni"></input>
+						<label 	for="caducidad">CADUCIDAD:</label> 
+						<input type="text" th:field="*{caducidad}" class="form-control" id="caducidad"></input>
 	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('dni')}" 
-							th:errors="*{dni}">
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('caducidad')}" 
+							th:errors="*{caducidad}">
 						</div>
 						
-						<label 	for="telefono">TELEFONO:</label> 
-						<input type="text" th:field="*{telefono}" class="form-control" id="telefono"></input>
+						<label 	for="nombreTitular">NOMBRE DEL TITULAR:</label> 
+						<input type="text" th:field="*{nombreTitular}" class="form-control" id="nombreTitular"></input>
 	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('telefono')}" 
-							th:errors="*{telefono}">
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('nombreTitular')}" 
+							th:errors="*{nombreTitular}">
 						</div>
 						
-						<label 	for="nombre_uni">NOMBRE DE LA UNIVERSIDAD:</label> 
-						<input type="text" th:field="*{nombre_uni}" class="form-control" id="nombre_uni"></input>
+						<label 	for="codigoSeguridad">CODIGO DE SEGURIDAD:</label> 
+						<input type="text" th:field="*{codigoSeguridad}" class="form-control" id="codigoSeguridad"></input>
 	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('nombre_uni')}" 
-							th:errors="*{nombre_uni}">
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('codigoSeguridad')}" 
+							th:errors="*{codigoSeguridad}">
 						</div>
 						
-						<label 	for="carrera_uni">CARRERA UNIVERSITARIA:</label> 
-						<input type="text" th:field="*{carrera_uni}" class="form-control" id="carrera_uni"></input>
-	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('carrera_uni')}" 
-							th:errors="*{carrera_uni}">
-						</div>
-						
-						<label 	for="correo">CORREO ELECTRONICO:</label> 
-						<input type="text" th:field="*{correo}" class="form-control" id="correo"></input>
-	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('correo')}" 
-							th:errors="*{correo}">
-						</div>
-						
-						<label 	for="contrasena">CONTRASENA:</label> 
-						<input type="text" th:field="*{contrasena}" class="form-control" id="contrasena"></input>
-	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('contrasena')}" 
-							th:errors="*{contrasena}">
-						</div>
-						
-										
-						
+						<label for=metodoPago>METODO DE PAGO: </label>
+						<select
+							class="form-control" th:field="*{metodoPago.idMetodo}">
+
+							<option th:each="m: ${listaMetodoPago}" th:value="${m.idMetodo}"
+								th:text="${m.nombre}"
+								th:selected="(${m.idMetodo} == *{metodoPago.idMetodo})"></option>
+						</select>
+
 					</div>
 					
 				</div>
@@ -216,7 +210,7 @@
 							<button type="submit" class="btn btn-dark">
 								<i class="fas fa-save"></i> Grabar
 							</button>
-							<a th:href="@{/cliente/listar}"
+							<a th:href="@{/pago/listar}"
 								class="btn btn-danger"> Cancelar</a>
 						</div>
 					</form>

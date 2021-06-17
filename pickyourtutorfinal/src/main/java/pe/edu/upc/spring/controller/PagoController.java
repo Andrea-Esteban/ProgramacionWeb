@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.text.ParseException;
+
 import pe.edu.upc.spring.model.Pago;
+import pe.edu.upc.spring.service.IMetodoPagoService;
 import pe.edu.upc.spring.service.IPagoService;
 
 @Controller
@@ -20,6 +22,9 @@ public class PagoController {
 
 	@Autowired
 	private IPagoService pService;
+	
+	@Autowired
+	private IMetodoPagoService mService;
 
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
@@ -29,19 +34,20 @@ public class PagoController {
 	@RequestMapping("/")
 	public String irPaginaListadoPagos(Map<String, Object> model) {
 		model.put("listaPagos", pService.listar());
-		return "listPago";
+		return "pago/listPago";
 	}
 
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
 		model.addAttribute("pago", new Pago());
-		return "pago";
+		model.addAttribute("listaMetodoPago", mService.listar());
+		return "pago/pago";
 	}
 
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute Pago objPago, BindingResult binRes, Model model) throws ParseException {
 		if (binRes.hasErrors())
-			return "pago";
+			return "pago/pago";
 		else {
 			boolean flag = pService.insertar(objPago);
 			if (flag)
@@ -60,8 +66,9 @@ public class PagoController {
 			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
 			return "redirect:/pago/listar";
 		} else {
+			model.addAttribute("listaMetodoPago", mService.listar());
 			model.addAttribute("pago", objPago);
-			return "pago";
+			return "pago/pago";
 		}
 	}
 	
@@ -77,12 +84,12 @@ public class PagoController {
 			model.put("mensaje", "Ocurrio un error");
 			model.put("listaPago", pService.listar());
 		}
-		return "listPago";
+		return "pago/listPago";
 		}
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
 		model.put("listaPagos", pService.listar());
-		return "listPago";
+		return "pago/listPago";
 	}
 }

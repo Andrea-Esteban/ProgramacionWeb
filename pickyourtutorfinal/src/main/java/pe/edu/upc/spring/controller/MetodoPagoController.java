@@ -32,26 +32,26 @@ public class MetodoPagoController {
 	@RequestMapping("/")
 	public String irPaginaListadoMetodoPago(Map<String, Object> model) {
 		model.put("listaMetodoPago", cService.listar());
-		return "listMetodoPago";
+		return "metodopago/listMetodoPago";
 	}
 
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
 		model.addAttribute("metodopago", new MetodoPago());
-		return "metodopago";
+		return "metodopago/metodopago";
 	}
 	
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute MetodoPago objMetodoPago, BindingResult binRes, Model model) throws ParseException {
 		if (binRes.hasErrors())
-			return "metodopago";
+			return "metodopago/metodopago";
 		else {
 			boolean flag = cService.insertar(objMetodoPago);
 			if (flag)
-				return "redirect:/metocopago/listar";
+				return "redirect:/metodopago/listar";
 			else {
 				model.addAttribute("mensaje", "Ocurrió un error");
-				return "redirect:/metodocliente/irRegistrar";
+				return "redirect:/metodopago/irRegistrar";
 			}
 		}
 	}
@@ -64,7 +64,7 @@ public class MetodoPagoController {
 			return "redirect:/metodopago/listar";
 		} else {
 			model.addAttribute("metodopago", objMetodoPago);
-			return "metodopago";
+			return "metodopago/metodopago";
 		}
 	}
 	
@@ -78,15 +78,15 @@ public class MetodoPagoController {
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje", "Ocurrio un error");
-			model.put("listaClientes", cService.listar());
+			model.put("listaMetodoPago", cService.listar());
 		}
-		return "listMetodoPago";
+		return "metodopago/listMetodoPago";
 		}
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
 		model.put("listaMetodoPago", cService.listar());
-		return "listMetodoPago";
+		return "metodopago/listMetodoPago";
 	}
 	
 	

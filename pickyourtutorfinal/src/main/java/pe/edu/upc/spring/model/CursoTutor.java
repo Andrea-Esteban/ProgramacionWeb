@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,14 +23,14 @@ public class CursoTutor implements Serializable{
 	@Column(name="nota", nullable=false, length=2)
 	private String nota;
 	
-	@Column(name="costo_por_hora", nullable=false, length=3)
+	@Column(name="costoPorHora", nullable=false, length=3)
 	private String costoHora;
 
 	@ManyToOne
 	@JoinColumn(name = "idCurso", nullable = false)
 	private Curso curso;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idTutor", nullable = false)
 	private Tutor tutor;
 
@@ -39,6 +38,10 @@ public class CursoTutor implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	
+	
 
 	public CursoTutor(int idCursoTutor, String nota, String costoHora, Curso curso, Tutor tutor) {
 		super();
@@ -48,6 +51,8 @@ public class CursoTutor implements Serializable{
 		this.curso = curso;
 		this.tutor = tutor;
 	}
+
+
 
 	public int getIdCursoTutor() {
 		return idCursoTutor;
@@ -88,5 +93,7 @@ public class CursoTutor implements Serializable{
 	public void setTutor(Tutor tutor) {
 		this.tutor = tutor;
 	}
+
+	
 
 }

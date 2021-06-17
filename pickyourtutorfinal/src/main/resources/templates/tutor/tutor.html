@@ -59,41 +59,41 @@
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item"
-							th:href="@{/matricula/docente/lista_docente}">Curso</a>
+							th:href="@{/curso/listar}">Curso</a>
 					</div>
 				</div>
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item"
-							th:href="@{/matricula/docente/lista_docente}">Agregar Curso</a>
+							th:href="@{/cursotutor/listar}">Agregar Curso</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/matricula/curso/lista_curso}">Pago</a>
-					</div>
-				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item"
-							th:href="@{/matricula/matricular/reporte}">M&eacute;todo de Pago</a>
+						<a class="collapse-item" th:href="@{/pago/listar}">Pago</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item"
-							th:href="@{/matricula/matricular/reporte}">Rese&ntilde;a a Tutor</a>
+							th:href="@{/metodopago/listar}">M&eacute;todo de Pago</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item"
-							th:href="@{/matricula/matricular/reporte}">Solicitar Tutor&iacute;a</a>
+							th:href="@{/resenatutor/listar}">Rese&ntilde;a a Tutor</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item"
+							th:href="@{/solicitar}">Solicitar Tutor&iacute;a</a>
 					</div>
 				</div>
 				</li>
@@ -121,9 +121,9 @@
 								class="fas fa-user-circle fa-lg fa-fw mr-2 text-white"></i> </a>
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-								aria-labelledby="userDropdown" style="background: #BEE4FF">
+								aria-labelledby="userDropdown" style="background:#BEE4FF">
 								<a class="dropdown-item" th:href="@{/login}"
-									style="background: #ffba6a"> <i
+									style="background: #BAD8EF"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-white"></i> <span
 									class="text-white">Cerrar sesi&oacute;n</span>
 								</a>

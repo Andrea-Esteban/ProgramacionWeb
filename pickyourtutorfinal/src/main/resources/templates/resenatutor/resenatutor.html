@@ -1,23 +1,42 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="layout/layout :: head">
-</head>
-<body>
-	<div id="wrapper">
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="layout/layout :: head">
+		
+		<meta charset="ISO-8859-1"></meta>
+		
+		<title>RESENA</title>
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		
+		<link 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+				rel="stylesheet" id="bootstrap-css">
+		</link>
+
+		<script
+			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+		</script>
+		
+		<script type="text/javascript" th:src="@{/js/resenatutor.js}"></script>
+
+	</head>
+	
+	<body>
+<div id="wrapper">
 
 		<ul class="navbar-nav sidebar sidebar-dark accordion"
 			id="accordionSidebar" style="background-color: #5CB1EE;">
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/matricula}">
+				th:href="@{/welcome/bienvenido}">
 				<div class="sidebar-brand-icon">
 					<i class="fas fa-desktop"></i>
 				</div>
-				<div class="sidebar-brand-text mx-3">TUTORES Y CLIENTES</div>
+				<div class="sidebar-brand-text mx-3">CLIENTE</div>
 			</a>
 
 			<hr class="sidebar-divider my-0">
+
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded=true
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
@@ -43,7 +62,7 @@
 							th:href="@{/curso/listar}">Curso</a>
 					</div>
 				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item"
@@ -78,7 +97,6 @@
 					</div>
 				</div>
 				</li>
-
 			<hr class="sidebar-divider">
 
 		</ul>
@@ -96,16 +114,16 @@
 					<ul class="navbar-nav ml-auto">
 
 						<li class="nav-item dropdown no-arrow"><a
-							class="nav-link dropdown-toggle" th:href="@{#}" id="userDropdown"
+							class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"><span
-								class="mr-2 d-none d-lg-inline text-white"
-								sec:authentication="name"> Usuario</span> <i
+								class="mr-2 d-none d-lg-inline text-white" sec:authentication="name"> Usuario</span> <i
 								class="fas fa-user-circle fa-lg fa-fw mr-2 text-white"></i> </a>
-							<div class="dropdown-menu dropdown-menu-right shadow"
-								aria-labelledby="userDropdown" style="background: #BEE4FF">
+							<div
+								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+								aria-labelledby="userDropdown" style="background: rgb(117, 168, 244)">
 								<a class="dropdown-item" th:href="@{/login}"
-									style="background: #BAD8EF"> <i
+									style="background: #BEE4FF"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-white"></i> <span
 									class="text-white">Cerrar sesi&oacute;n</span>
 								</a>
@@ -115,18 +133,65 @@
 				</nav>
 
 
-				<div class="container-fluid" align="center">
-					<div class="container">
-						<h1 class="text-dark">BIENVENIDO A PICK YOUR TUTOR</h1>
-						<br /> <img class="mb-4" th:src="@{/imagenes/2.png}"
-							alt="compu" style="width: 28%; height: 28%; margin: auto;">
-						<p class="lead text-muted">QUE LA PANDEMIA NO TE ATRASE EN TUS ESTUDIOS, SI NECESITAS AYUDA AQUÍ ESTAMOS</p>
+				<div class="container-fluid">
+					<form th:action="@{/resenatutor/registrar}" method="post" th:object="${resenatutor}">
+						<div class="form-row col-6">
+							<div class="form-group col-md-12">
+								<h2 class="m-0 font-weight-bold text-dark">REGISTRO RESEÑAS</h2>
+							</div>
+							<div class="form-group">
+					
+					<label for="idResena">ID:</label> 
+					<input type="text" class="form-control" th:field="*{idResena}"></input>
+					
+					<div class="form-group">
+					
+						<label 	for="valoracion">VALORACION:</label> 
+						<input type="text" th:field="*{valoracion}" class="form-control" id="valoracion"></input>
+	
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('valoracion')}" 
+							th:errors="*{valoracion}">
+						</div>
+						
+						<label for=metodoPago>NOMBRE DEL CLIENTE: </label>
+						<select
+							class="form-control" th:field="*{cliente.idCliente}">
+
+							<option th:each="m: ${listaClientes}" th:value="${m.idCliente}"
+								th:text="${m.nombre}"
+								th:selected="(${m.idCliente} == *{cliente.idCliente})"></option>
+						</select>
+						
+						
+						<label for=metodoPago>NOMBRE DEL TUTOR: </label>
+						<select
+							class="form-control" th:field="*{tutor.idTutor}">
+
+							<option th:each="m: ${listaTutores}" th:value="${m.idTutor}"
+								th:text="${m.nombre}"
+								th:selected="(${m.idTutor} == *{tutor.idTutor})"></option>
+						</select>
+
 					</div>
+					
 				</div>
 
+
+						</div>
+						<div class="form-group col-md-12 text-left">
+							<br>
+							<button type="submit" class="btn btn-dark">
+								<i class="fas fa-save"></i> Grabar
+							</button>
+							<a th:href="@{/resenatutor/listar}"
+								class="btn btn-danger"> Cancelar</a>
+						</div>
+					</form>
+				</div>
+				<footer th:replace="layout/layout :: footer"></footer>
 			</div>
-			<footer th:replace="layout/layout :: footer"></footer>
 		</div>
-	</div>
-</body>
+
+	</body>
+	
 </html>

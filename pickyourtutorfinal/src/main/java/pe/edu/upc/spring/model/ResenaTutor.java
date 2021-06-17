@@ -21,7 +21,7 @@ public class ResenaTutor implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)	
-	private int idReseña;
+	private int idResena;
 	
 	@Column(name= "valoracion", nullable= false, length= 10)
 	private int valoracion;
@@ -39,20 +39,20 @@ public class ResenaTutor implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ResenaTutor(int idReseña, int valoracion, Cliente cliente, Tutor tutor) {
+	public ResenaTutor(int idResena, int valoracion, Cliente cliente, Tutor tutor) {
 		super();
-		this.idReseña = idReseña;
+		this.idResena = idResena;
 		this.valoracion = valoracion;
 		this.cliente = cliente;
 		this.tutor = tutor;
 	}
 
-	public int getIdReseña() {
-		return idReseña;
+	public int getIdResena() {
+		return idResena;
 	}
 
-	public void setIdReseña(int idReseña) {
-		this.idReseña = idReseña;
+	public void setIdResena(int idResena) {
+		this.idResena = idResena;
 	}
 
 	public int getValoracion() {
@@ -79,7 +79,7 @@ public class ResenaTutor implements Serializable {
 		this.tutor = tutor;
 	}
 
-	
+
 	
 	
 }

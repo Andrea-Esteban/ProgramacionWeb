@@ -14,7 +14,6 @@ import java.text.ParseException;
 
 
 import pe.edu.upc.spring.model.CursoTutor;
-import pe.edu.upc.spring.model.Curso;
 
 import pe.edu.upc.spring.service.ICursoTutorService;
 import pe.edu.upc.spring.service.ICursoService;
@@ -35,23 +34,21 @@ public class CursoTutorController {
 
 	@RequestMapping("/")
 	public String irPaginaListadoTutores(Map<String, Object> model) {
-		model.put("listaCursosTutores", curtuService.listar());
-		return "listCursoTutor";
+		model.put("listaCursoTutor", curtuService.listar());
+		return "cursotutor/listCursoTutor";
 	}
 
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
-		model.addAttribute("listaCursos", cService.listar());
-		model.addAttribute("curso", new Curso());
 		model.addAttribute("cursotutor", new CursoTutor());
-		return "cursotutor";
+		model.addAttribute("listaCursos", cService.listar());
+					return "cursotutor/cursotutor";
 	}
 
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute CursoTutor objCursoTutor, BindingResult binRes, Model model) throws ParseException {
 		if (binRes.hasErrors()) {
-			model.addAttribute("listaCursos", cService.listar());
-			return "cursotutor";
+				return "cursotutor/cursotutor";
 		}else {
 			boolean flag = curtuService.insertar(objCursoTutor);
 			if (flag)
@@ -71,10 +68,9 @@ public class CursoTutorController {
 			return "redirect:/cursotutor/listar";
 		} else {
 			model.addAttribute("listaCursos", cService.listar());
-			if (objCursoTutor.isPresent())
-				objCursoTutor.ifPresent(o -> model.addAttribute("pet", o));
+			model.addAttribute("cursotutor", objCursoTutor);
 
-			return "cursotutor";
+			return "cursotutor/cursotutor";
 		}
 	}
 	
@@ -90,12 +86,12 @@ public class CursoTutorController {
 			model.put("mensaje", "Ocurrio un error");
 			model.put("listaCursoTutor", curtuService.listar());
 		}
-		return "listCurso";
+		return "cursotutor/listCursoTutor";
 		}
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
 		model.put("listaCursoTutor", curtuService.listar());
-		return "listaCursoTutor";
+		return "cursotutor/listCursoTutor";
 	}
 }

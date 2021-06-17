@@ -15,8 +15,6 @@ import java.text.ParseException;
 
 
 import pe.edu.upc.spring.model.ResenaTutor;
-import pe.edu.upc.spring.model.Tutor;
-import pe.edu.upc.spring.model.Cliente;
 
 import pe.edu.upc.spring.service.IResenaTutorService;
 import pe.edu.upc.spring.service.IClienteService;
@@ -28,8 +26,10 @@ public class ResenaTutorController {
 
 	@Autowired
 	private IResenaTutorService cService;
+	
 	@Autowired
 	private IClienteService clService;
+	
 	@Autowired
 	private ITutorService tService;
 
@@ -40,34 +40,29 @@ public class ResenaTutorController {
 
 	@RequestMapping("/")
 	public String irPaginaListadoResena(Map<String, Object> model) {
-		model.put("listaResenas", cService.listar());
-		return "listResenaTutor";
+		model.put("listaResenaTutor", cService.listar());
+		return "resenatutor/listResenaTutor";
 	}
 
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
+		model.addAttribute("resenatutor", new ResenaTutor());
 		model.addAttribute("listaClientes", clService.listar());
 		model.addAttribute("listaTutores", tService.listar());
-		model.addAttribute("resena", new ResenaTutor());
-		model.addAttribute("cliente", new Cliente());
-		model.addAttribute("tutor", new Tutor());
-
-		return "resena";
+		return "resenatutor/resenatutor";
 	}
 	
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute ResenaTutor objResena, BindingResult binRes, Model model) throws ParseException {
 		if (binRes.hasErrors()) {
-			model.addAttribute("listaClientes", clService.listar());
-			model.addAttribute("listaTutores", tService.listar());
-			return "resena";
+			return "resenatutor/resenatutor";
 		}else {
 			boolean flag = cService.insertar(objResena);
 			if (flag)
-				return "redirect:/resena/listar";
+				return "redirect:/resenatutor/listar";
 			else {
 				model.addAttribute("mensaje", "Ocurrió un error");
-				return "redirect:/resena/irRegistrar";
+				return "redirect:/resenatutor/irRegistrar";
 			}
 		}
 	}
@@ -77,13 +72,12 @@ public class ResenaTutorController {
 		Optional<ResenaTutor> objResena = cService.listarId(id);
 		if (objResena == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
-			return "redirect:/resena/listar";
+			return "redirect:/resenatutor/listar";
 		} else {
 			model.addAttribute("listaClientes", clService.listar());
 			model.addAttribute("listaTutores", tService.listar());
-			if (objResena.isPresent())
-				objResena.ifPresent(o -> model.addAttribute("resena", o));
-			return "resena";
+			model.addAttribute("resenatutor", objResena);
+			return "resenatutor/resenatutor";
 		}
 	}
 	
@@ -97,15 +91,15 @@ public class ResenaTutorController {
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje", "Ocurrio un error");
-			model.put("listaResenas", cService.listar());
+			model.put("listaResenaTutor", cService.listar());
 		}
-		return "listResenaTutor";
+		return "resenatutor/listResenaTutor";
 		}
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
 		model.put("listaResenaTutor", cService.listar());
-		return "listResenas";
+		return "resenatutor/listResenaTutor";
 	}
 	
 
