@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-	<head>
+	<head th:replace="layout/layout :: head">
 		
 		<meta charset="ISO-8859-1"></meta>
 		
-		<title>Cliente</title>
+		<title>Tutor</title>
 		
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		
@@ -22,12 +22,125 @@
 	</head>
 	
 	<body>
-	
-		<div th:replace="fragments/header :: header"></div>
-		
-		<div class="container">
-			<form th:action="@{/cliente/registrar}" method="post" th:object="${cliente}">
-				<div class="form-group">
+<div id="wrapper">
+
+		<ul class="navbar-nav sidebar sidebar-dark accordion"
+			id="accordionSidebar" style="background-color: #5CB1EE;">
+			<a
+				class="sidebar-brand d-flex align-items-center justify-content-center"
+				th:href="@{/welcome/bienvenido}">
+				<div class="sidebar-brand-icon">
+					<i class="fas fa-desktop"></i>
+				</div>
+				<div class="sidebar-brand-text mx-3">TUTOR</div>
+			</a>
+
+			<hr class="sidebar-divider my-0">
+
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-target="#collapseTwo" aria-expanded=true
+				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
+			</a>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item"
+							th:href="@{/cliente/listar}">Cliente</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item"
+							th:href="@{/tutor/listar}">Tutor</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item"
+							th:href="@{/matricula/docente/lista_docente}">Curso</a>
+					</div>
+				</div>
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item"
+							th:href="@{/matricula/docente/lista_docente}">Agregar Curso</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/matricula/curso/lista_curso}">Pago</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item"
+							th:href="@{/matricula/matricular/reporte}">M&eacute;todo de Pago</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item"
+							th:href="@{/matricula/matricular/reporte}">Rese&ntilde;a a Tutor</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item"
+							th:href="@{/matricula/matricular/reporte}">Solicitar Tutor&iacute;a</a>
+					</div>
+				</div>
+				</li>
+			<hr class="sidebar-divider">
+
+		</ul>
+
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column"
+			style="background: #D6FFF7">
+
+			<div id="content">
+
+				<nav
+					class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow"
+					style="background: #51AFF2">
+
+					<ul class="navbar-nav ml-auto">
+
+						<li class="nav-item dropdown no-arrow"><a
+							class="nav-link dropdown-toggle" href="#" id="userDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"><span
+								class="mr-2 d-none d-lg-inline text-white" sec:authentication="name"> Usuario</span> <i
+								class="fas fa-user-circle fa-lg fa-fw mr-2 text-white"></i> </a>
+							<div
+								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+								aria-labelledby="userDropdown" style="background: #BEE4FF">
+								<a class="dropdown-item" th:href="@{/login}"
+									style="background: #ffba6a"> <i
+									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-white"></i> <span
+									class="text-white">Cerrar sesi&oacute;n</span>
+								</a>
+							</div></li>
+
+					</ul>
+				</nav>
+
+
+				<div class="container-fluid">
+					<form th:action="@{/cliente/registrar}" method="post" th:object="${cliente}">
+						<div class="form-row col-6">
+							<div class="form-group col-md-12">
+								<h2 class="m-0 font-weight-bold text-dark">REGISTRO DE
+									CLIENTE</h2>
+							</div>
+							<div class="form-group">
 					
 					<label for="idCliente">ID:</label> 
 					<input type="text" class="form-control" th:field="*{idCliente}"></input>
@@ -83,23 +196,34 @@
 							th:errors="*{correo}">
 						</div>
 						
-						<label 	for="contrasena">CONTRASEÑA:</label> 
+						<label 	for="contrasena">CONTRASENA:</label> 
 						<input type="text" th:field="*{contrasena}" class="form-control" id="contrasena"></input>
 	
 						<div class="alert alert-danger" th:if="${#fields.hasErrors('contrasena')}" 
 							th:errors="*{contrasena}">
 						</div>
 						
+										
+						
 					</div>
 					
 				</div>
-				
-				<button type="submit" class="btn btn-primary">Aceptar</button>
-				<a href="/cliente/listar" class="btn btn-danger">Cancelar</a>
-			</form>
+
+
+						</div>
+						<div class="form-group col-md-12 text-left">
+							<br>
+							<button type="submit" class="btn btn-dark">
+								<i class="fas fa-save"></i> Grabar
+							</button>
+							<a th:href="@{/cliente/listar}"
+								class="btn btn-danger"> Cancelar</a>
+						</div>
+					</form>
+				</div>
+				<footer th:replace="layout/layout :: footer"></footer>
+			</div>
 		</div>
-	
-		<div th:replace="fragments/footer :: footer"></div>
 
 	</body>
 	

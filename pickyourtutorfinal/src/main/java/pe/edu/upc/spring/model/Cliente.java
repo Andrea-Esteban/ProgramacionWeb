@@ -9,9 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
 import javax.persistence.Table;
 
 @Entity
@@ -50,17 +50,19 @@ public class Cliente implements Serializable{
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private Set<ResenaTutor> resenaTutores;
 	
-	@OneToOne
-	@JoinColumn(name="idSolicitudClase", nullable=false)
-	private SolicitudClase solicitudClase;
+	
+	
 	
 	public Cliente() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+
+
+
 	public Cliente(int idCliente, String correo, String contrasena, String nombre, String apellido, int dni,
-			int telefono, String nombre_uni, String carrera_uni) {
+			int telefono, String nombre_uni, String carrera_uni, Set<ResenaTutor> resenaTutores) {
 		super();
 		this.idCliente = idCliente;
 		this.correo = correo;
@@ -71,80 +73,150 @@ public class Cliente implements Serializable{
 		this.telefono = telefono;
 		this.nombre_uni = nombre_uni;
 		this.carrera_uni = carrera_uni;
+		this.resenaTutores = resenaTutores;
 	}
+
+
+
 
 	public int getIdCliente() {
 		return idCliente;
 	}
 
+
+
+
 	public void setIdCliente(int idCliente) {
 		this.idCliente = idCliente;
 	}
+
+
+
 
 	public String getCorreo() {
 		return correo;
 	}
 
+
+
+
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
+
+
+
 
 	public String getContrasena() {
 		return contrasena;
 	}
 
+
+
+
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
+
+
+
 
 	public String getNombre() {
 		return nombre;
 	}
 
+
+
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+
+
 
 	public String getApellido() {
 		return apellido;
 	}
 
+
+
+
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
+
+
+
 
 	public int getDni() {
 		return dni;
 	}
 
+
+
+
 	public void setDni(int dni) {
 		this.dni = dni;
 	}
+
+
+
 
 	public int getTelefono() {
 		return telefono;
 	}
 
+
+
+
 	public void setTelefono(int telefono) {
 		this.telefono = telefono;
 	}
+
+
+
 
 	public String getNombre_uni() {
 		return nombre_uni;
 	}
 
+
+
+
 	public void setNombre_uni(String nombre_uni) {
 		this.nombre_uni = nombre_uni;
 	}
 
+
+
+
 	public String getCarrera_uni() {
 		return carrera_uni;
 	}
+
+
+
 
 	public void setCarrera_uni(String carrera_uni) {
 		this.carrera_uni = carrera_uni;
 	}
 
 
+
+
+	public Set<ResenaTutor> getResenaTutores() {
+		return resenaTutores;
+	}
+
+
+
+
+	public void setResenaTutores(Set<ResenaTutor> resenaTutores) {
+		this.resenaTutores = resenaTutores;
+	}
+
+	
+	
 	
 }

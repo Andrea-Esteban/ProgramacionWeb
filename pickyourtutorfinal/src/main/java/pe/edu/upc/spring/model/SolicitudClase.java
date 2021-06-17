@@ -52,7 +52,7 @@ public class SolicitudClase implements Serializable{
 	@JoinColumn(name="idPago", nullable=false)
 	private Pago pago;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="idCliente", nullable=false)
 	private Cliente cliente;
 	

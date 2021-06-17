@@ -15,7 +15,7 @@ import pe.edu.upc.spring.model.Cliente;
 import pe.edu.upc.spring.service.IClienteService;
 
 @Controller
-@RequestMapping("cliente/cliente")
+@RequestMapping("/cliente")
 public class ClienteController {
 
 	@Autowired
@@ -29,19 +29,19 @@ public class ClienteController {
 	@RequestMapping("/")
 	public String irPaginaListadoClientes(Map<String, Object> model) {
 		model.put("listaClientes", cService.listar());
-		return "listCliente";
+		return "cliente/listCliente";
 	}
 
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
 		model.addAttribute("cliente", new Cliente());
-		return "cliente";
+		return "cliente/cliente";
 	}
 
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute Cliente objCliente, BindingResult binRes, Model model) throws ParseException {
 		if (binRes.hasErrors())
-			return "cliente";
+			return "cliente/cliente";
 		else {
 			boolean flag = cService.insertar(objCliente);
 			if (flag)
@@ -61,7 +61,7 @@ public class ClienteController {
 			return "redirect:/cliente/listar";
 		} else {
 			model.addAttribute("cliente", objCliente);
-			return "cliente";
+			return "cliente/cliente";
 		}
 	}
 	
@@ -77,16 +77,12 @@ public class ClienteController {
 			model.put("mensaje", "Ocurrio un error");
 			model.put("listaClientes", cService.listar());
 		}
-		return "listCliente";
+		return "cliente/listCliente";
 		}
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
 		model.put("listaClientes", cService.listar());
-<<<<<<< HEAD
-		return "/listCliente";
-=======
 		return "cliente/listCliente";
->>>>>>> 8c94631d4df0cd019cfe3544ea0decdc8103465a
 	}
 }
