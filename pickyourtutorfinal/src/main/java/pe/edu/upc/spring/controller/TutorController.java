@@ -15,7 +15,7 @@ import pe.edu.upc.spring.model.Tutor;
 import pe.edu.upc.spring.service.ITutorService;
 
 @Controller
-@RequestMapping("/tutor")
+@RequestMapping("tutor/tutor")
 public class TutorController {
 
 	@Autowired
@@ -32,13 +32,13 @@ public class TutorController {
 		return "listTutor";
 	}
 
-	@RequestMapping("/irRegistrar")
+	@RequestMapping("/tutor/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
 		model.addAttribute("tutor", new Tutor());
 		return "tutor";
 	}
 
-	@RequestMapping("/registrar")
+	@RequestMapping("/tutor/registrar")
 	public String registrar(@ModelAttribute Tutor objTutor, BindingResult binRes, Model model) throws ParseException {
 		if (binRes.hasErrors())
 			return "tutor";
@@ -83,6 +83,6 @@ public class TutorController {
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
 		model.put("listaTutores", tService.listar());
-		return "listTutor";
+		return "tutor/listTutor";
 	}
 }
