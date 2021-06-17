@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<title>LOGIN</title>
+
+<link rel="stylesheet" th:href="@{/css/sb-admin-2.min.css}">
+<link rel="stylesheet" th:href="@{/css/chosen.min.css}">
+<link rel="stylesheet" th:href="@{/css/fontawesome.min.css}">
+<link rel="stylesheet" th:href="@{/css/solid.min.css}">
+
+<body style="background: #5CB1EE;">
+    <br>
+    <div class="card text-center mx-auto" style="width: 40%">
+
+        <br /> <img class="mb-4" th:src="@{/imagenes/index3.jpg}" alt="logo"
+            style="width: 35%; height: 35%; margin: auto;">
+        <h1 class="text-dark">PICK YOUR TUTOR</h1>
+
+        <h2 class="h3 mb-3 font-weight-normal text-dark">
+            <i class="fas fa-user-circle"></i> Iniciar Sesion
+        </h2>
+        <div class="card-body text-right">
+            <form th:action="@{/login}" class="form-signin" method="post">
+
+                <div class="input-group mb-3">
+                    <input type="text" id="username" name="username"
+                        class="form-control" placeholder="UserName"
+                        aria-describedby="basic-addon1" required autofocus>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon2"><i
+                            class="fas fa-lock"></i></span>
+                    </div>
+                    <input type="password" id="password" name="password"
+                        class="form-control" placeholder="Password"
+                        aria-describedby="basic-addon2" required>
+                </div>
+                <button class="btn btn-lg text-white btn-block" type="submit"
+                    style="background:rgb(255,173,1)">
+                    <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                </button>
+                <input type="hidden" th:name="${_csrf.parameterName}"
+                        th:value="${_csrf.token}" />
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
