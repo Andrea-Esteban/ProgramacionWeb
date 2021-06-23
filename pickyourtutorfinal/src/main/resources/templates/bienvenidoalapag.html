@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com -->
+  <title>Pick Your Tutor</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <style>
+  body {font: 400 15px Lato, sans-serif; line-height: 1.8; color: #818181;}
+  h2 { font-size: 40px; text-transform:uppercase; color:#000080 ; font-weight: 600; margin-bottom: 30px;font-family:algerian}
+  h4 {  font-size: 20px;  line-height: 1.375em;  color:#000000 ; font-weight: 400; margin-bottom: 30px; font-family:arial black}  
+  .jumbotron { background-color: #87CEEB; color:white; padding: 25px 25px; font-family: arial black, sans-serif;}
+  .container-fluid {  padding: 60px 50px; }
+  
+  
+  .navbar {
+    margin-bottom: 0;
+    background-color: #1E90FF;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 2px;
+    border-radius: 0;
+    font-family: arial black, sans-serif;
+  }
+  .navbar li a, .navbar .navbar-brand {
+    color:white ;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+    color:white !important;
+    background-color: white !important;
+  }
+  .navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: white!important;
+  }
+  footer .glyphicon {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #87CEEB;
+  }
+ 
+
+  </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#myPage">Pick Your Tutor</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+        <li><a href= "@{/bienvenido/}"  class="navbar-brand">LOGIN</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron text-center">
+ 
+   <img class="mb-4" th:src="@{/imagenes/2.png}" 
+            style="width: 15%; height: 15%; margin: auto;">
+    <p>SERVICIO DE TUTORIAS</p>
+            
+  <form>
+    </div>
+  </form>
+</div>
+
+<div id="about" class="container-fluid">
+  <div class="row">
+    <div class="col-sm-8">
+      <h2>QUIENES SOMOS</h2><br>
+      <h4>Nuestra Startup, “AprendeWith”, está conformada por un grupo de estudiantes de la carrera ingeniería de sistemas. Estamos preocupados por el 
+      rendimiento de los alumnos que necesiten apoyo en ciertos cursos que para ellos se les complicaría. Nosotros, proponemos una solución 
+      web para el estudiante donde pueda conseguir un tutor personalizado de su misma carrera y universidad con un alto conocimiento de la materia, 
+      pero primero pasando por filtros para garantizar la calidad del tutor.
+       </h4><br>
+      <br>
+    </div>
+    <div class="col-sm-4">
+      <img th:src="@{/imagenes/atraer-mas-alumnos-1-750x500.jpg}" class="w3-image w3-greyscale-min" style="width:100%">
+    </div>
+  </div>
+</div>
+
+<div id="about" class="container-fluid">
+  <div class="row">
+    <div class="col-sm-8">
+      <h2>SOBRE NOSOTROS</h2><br>
+      <h4>Nuestra Startup, “AprendeWith”, está conformada por un grupo de estudiantes de la carrera ingeniería de sistemas. Estamos preocupados por el 
+      rendimiento de los alumnos que necesiten apoyo en ciertos cursos que para ellos se les complicaría. Nosotros, proponemos una solución 
+      web para el estudiante donde pueda conseguir un tutor personalizado de su misma carrera y universidad con un alto conocimiento de la materia, 
+      pero primero pasando por filtros para garantizar la calidad del tutor.
+       </h4><br>
+      <br>
+    </div>
+    <div class="col-sm-4">
+      <img th:src="@{/imagenes/index3.jpg}" class="w3-image w3-greyscale-min" style="width:100%">
+    </div>
+  </div>
+</div>
+
+
+
+</body>
+</html>

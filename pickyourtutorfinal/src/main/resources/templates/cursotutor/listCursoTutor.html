@@ -132,7 +132,7 @@
 
 
 				<div class="container-fluid">
-					<h1 class="h3 mb-4 text-gray-800">HISTORIAL DE PAGOS</h1>
+					<h1 class="h3 mb-4 text-gray-800">HISTORIAL DE CURSOS</h1>
 
 					<a  style="border-bottom-color:blue" th:href="@{/cursotutor/irRegistrar}" id="add-row" 
 							type="button"
@@ -148,8 +148,9 @@
 									<th class="text-center">NOTA</th>
 									<th class="text-center">COSTO HORA</th>
 									<th class="text-center">CURSO</th>
-									<th class="text-center">OPERACIÓN</th>
-									<th class="text-center">OPERACIÓN</th>	
+									<th class="text-center">TUTOR</th>
+									<th class="text-center">OPERACION</th>
+									<th class="text-center">OPERACION</th>	
 																																		</tr>
 						</thead>
 						<tbody>
@@ -158,6 +159,7 @@
 									<td th:text="${ct.nota}"></td>
 									<td th:text="${ct.costoHora}"></td>
 									<td th:text="${ct.curso.nombreCurso}"></td>
+									<td th:text="${ct.tutor.nombre}"></td>
 							
 									<td><a th:href="@{/cursotutor/eliminar?id=}+${ct.idCursoTutor}">Eliminar</a></td>
 									<td><a th:href="@{'/cursotutor/modificar/' + ${ct.idCursoTutor}}">Modificar</a></td>	

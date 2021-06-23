@@ -137,11 +137,11 @@
 					<form th:action="@{/cursotutor/registrar}" method="post" th:object="${cursotutor}">
 						<div class="form-row col-6">
 							<div class="form-group col-md-12">
-								<h2 class="m-0 font-weight-bold text-dark">REGISTRO RESEÑAS</h2>
+								<h2 class="m-0 font-weight-bold text-dark">REGISTRO CURSOS</h2>
 							</div>
 							<div class="form-group">
 					
-					<label for="idResena">ID:</label> 
+					<label for="idCursoTutor">ID:</label> 
 					<input type="text" class="form-control" th:field="*{idCursoTutor}"></input>
 					
 					<div class="form-group">
@@ -165,8 +165,16 @@
 							class="form-control" th:field="*{curso.idCurso}">
 
 							<option th:each="c: ${listaCursos}" th:value="${c.idCurso}"
-								th:text="${m.nombreCurso}"
-								th:selected="(${m.idCurso} == *{curso.idCurso})"></option>
+								th:text="${c.nombreCurso}"
+								th:selected="(${c.idCurso} == *{curso.idCurso})"></option>
+						</select>
+						<label for=metodoPago>NOMBRE DEL TUTOR: </label>
+						<select
+							class="form-control" th:field="*{tutor.idTutor}">
+
+							<option th:each="t: ${listaTutores}" th:value="${t.idTutor}"
+								th:text="${t.nombre}"
+								th:selected="(${t.idTutor} == *{tutor.idTutor})"></option>
 						</select>
 						
 

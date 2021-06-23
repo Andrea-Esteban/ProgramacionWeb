@@ -16,6 +16,7 @@ import java.text.ParseException;
 import pe.edu.upc.spring.model.CursoTutor;
 
 import pe.edu.upc.spring.service.ICursoTutorService;
+import pe.edu.upc.spring.service.ITutorService;
 import pe.edu.upc.spring.service.ICursoService;
 
 @Controller
@@ -26,6 +27,8 @@ public class CursoTutorController {
 	private ICursoTutorService curtuService;
 	@Autowired
 	private ICursoService cService;
+	@Autowired
+	private ITutorService tService;
 
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
@@ -41,7 +44,9 @@ public class CursoTutorController {
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
 		model.addAttribute("cursotutor", new CursoTutor());
+		model.addAttribute("listaTutores", tService.listar());
 		model.addAttribute("listaCursos", cService.listar());
+
 					return "cursotutor/cursotutor";
 	}
 
@@ -68,6 +73,7 @@ public class CursoTutorController {
 			return "redirect:/cursotutor/listar";
 		} else {
 			model.addAttribute("listaCursos", cService.listar());
+			model.addAttribute("listaTutores", tService.listar());
 			model.addAttribute("cursotutor", objCursoTutor);
 
 			return "cursotutor/cursotutor";
