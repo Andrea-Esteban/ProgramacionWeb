@@ -12,15 +12,15 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
   <style>
   body {font: 400 15px Lato, sans-serif; line-height: 1.8; color: #818181;}
-  h2 { font-size: 40px; text-transform:uppercase; color:#000080 ; font-weight: 600; margin-bottom: 30px;font-family:algerian}
-  h4 {  font-size: 20px;  line-height: 1.375em;  color:#000000 ; font-weight: 400; margin-bottom: 30px; font-family:arial black}  
+  h2 { font-size: 40px; text-transform:uppercase; color:#000080 ; font-weight: 600; margin-bottom: 30px;font-family:SimSun}
+  h4 {  font-size: 20px;  line-height: 1.375em;  color:#000000 ; font-weight: 400; margin-bottom: 30px; font-family:SimSun black}  
   .jumbotron { background-color: #87CEEB; color:white; padding: 25px 25px; font-family: arial black, sans-serif;}
   .container-fluid {  padding: 60px 50px; }
   
   
   .navbar {
     margin-bottom: 0;
-    background-color: #1E90FF;
+    background-color: #5CB1EE;
     z-index: 9999;
     border: 0;
     font-size: 12px !important;
@@ -63,7 +63,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         
-        <li><a href= "@{/bienvenido/}"  class="navbar-brand">LOGIN</a></li>
+        <li><a th:href="@{/login}"  class="navbar-brand">LOGIN</a></li>
       </ul>
     </div>
   </div>
@@ -84,7 +84,7 @@
   <div class="row">
     <div class="col-sm-8">
       <h2>QUIENES SOMOS</h2><br>
-      <h4>Nuestra Startup, “AprendeWith”, está conformada por un grupo de estudiantes de la carrera ingeniería de sistemas. Estamos preocupados por el 
+      <h4>Nuestra Startup, “PICK YOUR TUTOR”, está conformada por un grupo de estudiantes de la carrera ingeniería de sistemas. Estamos preocupados por el 
       rendimiento de los alumnos que necesiten apoyo en ciertos cursos que para ellos se les complicaría. Nosotros, proponemos una solución 
       web para el estudiante donde pueda conseguir un tutor personalizado de su misma carrera y universidad con un alto conocimiento de la materia, 
       pero primero pasando por filtros para garantizar la calidad del tutor.
@@ -101,10 +101,9 @@
   <div class="row">
     <div class="col-sm-8">
       <h2>SOBRE NOSOTROS</h2><br>
-      <h4>Nuestra Startup, “AprendeWith”, está conformada por un grupo de estudiantes de la carrera ingeniería de sistemas. Estamos preocupados por el 
-      rendimiento de los alumnos que necesiten apoyo en ciertos cursos que para ellos se les complicaría. Nosotros, proponemos una solución 
-      web para el estudiante donde pueda conseguir un tutor personalizado de su misma carrera y universidad con un alto conocimiento de la materia, 
-      pero primero pasando por filtros para garantizar la calidad del tutor.
+      <h4>Misión: Nuestra misión es brindar una buena formación integral a los estudiantes, dándoles soluciones más abiertas e innovadoras y promover la educación ética entre todos.
+       </h4><br>
+       <h4>Visión:  Nuestra visión es lograr que nuestra aplicación llegue a expandirse a nivel nacional siendo el software más innovador y reconocido por todos los usuarios de distintas universidades.
        </h4><br>
       <br>
     </div>
