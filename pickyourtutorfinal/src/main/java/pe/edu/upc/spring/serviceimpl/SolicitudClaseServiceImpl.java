@@ -58,16 +58,16 @@ public class SolicitudClaseServiceImpl implements ISolicitudClaseService {
 		return dSolicitudClase.findAll();
 	}
 
+
 	@Override
 	@Transactional(readOnly = true)
-	public List<SolicitudClase> listarNombreTutor(String nombre) {
-		
+	public List<SolicitudClase> buscarNombreTutor(String nombre) {
 		return dSolicitudClase.buscarNombreTutor(nombre);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<SolicitudClase> listarNombreCurso(String nombreCurso) {
+	public List<SolicitudClase> buscarNombreCurso(String nombreCurso) {
 		return dSolicitudClase.buscarNombreCurso(nombreCurso);
 	}
 

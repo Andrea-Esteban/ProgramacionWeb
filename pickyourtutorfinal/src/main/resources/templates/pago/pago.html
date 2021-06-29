@@ -198,6 +198,15 @@
 								th:text="${m.nombre}"
 								th:selected="(${m.idMetodo} == *{metodoPago.idMetodo})"></option>
 						</select>
+						
+						<label for=metodoPago>ID DE LA SOLICITUD: </label>
+						<select
+							class="form-control" th:field="*{solicitudClase.idSolicitudClase}">
+
+							<option th:each="s: ${listaSolicitudClase}" th:value="${s.idSolicitudClase}"
+								th:text="${s.idSolicitudClase}"
+								th:selected="(${s.idSolicitudClase} == *{solicitudClase.idSolicitudClase})"></option>
+						</select>
 
 					</div>
 					

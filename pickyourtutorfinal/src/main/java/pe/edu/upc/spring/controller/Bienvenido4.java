@@ -4,11 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class Bienvenido2 {
+public class Bienvenido4 {
 
-    @GetMapping("/bienvenidoalapag")
-    public String bienvenido2() {
-        return "bienvenidoalapag";
+    @GetMapping("/bienvenido4")
+    public String bienvenido4() {
+        return "bienvenido4";
     }
 
 }

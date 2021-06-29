@@ -4,7 +4,7 @@
 <head th:replace="layout/layout :: head">
 		<meta charset="ISO-8859-1"></meta>
 		
-		<title>PAGO</title>
+		<title>METODO DE PAGO</title>
 		
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		
@@ -16,7 +16,7 @@
 			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
 		</script>
 		
-		<script type="text/javascript" th:src="@{/js/pago.js}"></script>
+		<script type="text/javascript" th:src="@{/js/metodopago.js}"></script>
 </head>
 <body>
 	<div id="wrapper">
@@ -132,41 +132,45 @@
 
 
 				<div class="container-fluid">
-					<h1 class="h3 mb-4 text-gray-800">HISTORIAL DE PAGOS</h1>
+					<h1 class="h3 mb-4 text-gray-800">Solicitud Clase </h1>
+				
+					 
+							
+							
 
-					<a  style="border-bottom-color:blue" th:href="@{/pago/irRegistrar}" id="add-row" 
+					<a  style="border-bottom-color:blue" th:href="@{/solicitudclase/irRegistrar}" id="add-row" 
 							type="button"
 							class="btn btn-primary btn-md left-block"> <span
-							class="glyphicon glyphicon-plus" ></span> AGREGAR
-						</a>
-
+							class="glyphicon glyphicon-plus" ></span>Agregar</a>
+							
+					<a style="border-bottom-color: green"
+						th:href="@{/solicitudclase/irBuscar}" id="add-row" type="button"
+						class="btn btn-primary btn-md left-block"> <span
+						class="glyphicon glyphicon-search"></span>
+					</a>
+						
+					
 						<table class="table table-bordered table-hover table-striped" id="tab_logic">
 
 						<thead class="thead-dark">
 							<tr align="center">
-									<th class="text-center">CODIGO</th>
-									<th class="text-center">MONTO</th>
+									<th class="text-center">TUTOR</th>
+									<th class="text-center">CURSO</th>
+									<th class="text-center">DIA</th>
+									<th class="text-center">HORA</th>
 									<th class="text-center">FECHA</th>
-									<th class="text-center">NUM.TARJETA</th>
-									<th class="text-center">CADUCIDAD</th>
-									<th class="text-center">COD.SEG</th>
-									<th class="text-center">N.SOLICITUD</th>									
-									<th class="text-center">NOMBRE</th>																		
-									<th class="text-center">METODO</th>
-																																		</tr>
+									<th class="text-center">HORAS/C</th>
+		
+							</tr>
 						</thead>
 						<tbody>
-								<tr th:each="pa: ${listaPagos}">
-									<td th:text="${pa.idPago}"></td>
-									<td th:text="${pa.monto}"></td>
-									<td th:text="${pa.fecha}"></td>
-									<td th:text="${pa.numeroTarj}"></td>
-									<td th:text="${pa.caducidad}"></td>
-									<td th:text="${pa.codigoSeguridad}"></td>
-									<td th:text="${pa.solicitudClase.idSolicitudClase}"></td>
-									<td th:text="${pa.nombreTitular}"></td>
-									<td th:text="${pa.metodoPago.nombre}"></td>									
-
+								<tr th:each="mp: ${listaSolicitudClase}">
+									<td th:text="${mp.tutor.nombretutor}"></td>
+									<td th:text="${mp.cursotutor.curso.nombre_curso}"></td>
+									<td th:text="${mp.diaClase}"></td>
+									<td th:text="${mp.horaClase}"></td>
+									<td th:text="${mp.fechaClase}"></td>
+									<td th:text="${mp.horasCurso}"></td>
 								</tr>
 						</tbody>
 					</table>

@@ -1,5 +1,6 @@
 package pe.edu.upc.spring.controller;
-import java.util.List;
+
+//import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.text.ParseException;
 
+//import pe.edu.upc.spring.model.CursoTutor;
 import pe.edu.upc.spring.model.SolicitudClase;
-import pe.edu.upc.spring.model.Tutor;
+//import pe.edu.upc.spring.model.Tutor;
 import pe.edu.upc.spring.service.ISolicitudClaseService;
+import pe.edu.upc.spring.service.ICursoTutorService;
+import pe.edu.upc.spring.service.ITutorService;
 
 @Controller
 @RequestMapping("/solicitudclase")
@@ -23,6 +27,10 @@ public class SolicitudClaseController {
 
 	@Autowired
 	private ISolicitudClaseService soliService;
+	@Autowired
+	private ICursoTutorService curstService;
+	@Autowired
+	private ITutorService tService;
 
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
@@ -32,19 +40,21 @@ public class SolicitudClaseController {
 	@RequestMapping("/")
 	public String irPaginaListadoTutores(Map<String, Object> model) {
 		model.put("listaSolicitudClase", soliService.listar());
-		return "listSolicitudClase";
+		return "solicitudclase/listSolicitudClase";
 	}
 
 	@RequestMapping("/irRegistrar")
-	public String irPaginaRegistrar(Model model) {
+	public String irPaginaRegistrar(Model model) {		
 		model.addAttribute("solicitudclase", new SolicitudClase());
-		return "solicitudclase";
+		model.addAttribute("listaTutores", tService.listar());
+		model.addAttribute("listaCursoTutor", curstService.listar());
+		return "solicitudclase/solicitudclase";
 	}
 
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute SolicitudClase objSolicitudClase, BindingResult binRes, Model model) throws ParseException {
 		if (binRes.hasErrors())
-			return "solicitudclase";
+			return "solicitudclase/solicitudclase";
 		else {
 			boolean flag = soliService.insertar(objSolicitudClase);
 			if (flag)
@@ -63,8 +73,10 @@ public class SolicitudClaseController {
 			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
 			return "redirect:/solicitudclase/listar";
 		} else {
+			model.addAttribute("listaTutores", tService.listar());
+			model.addAttribute("listaCursoTutor", tService.listar());
 			model.addAttribute("solicitudclase", objSolicitudClase);
-			return "solicitudclase";
+			return "solicitudclase/solicitudclase";
 		}
 	}
 	
@@ -80,37 +92,37 @@ public class SolicitudClaseController {
 			model.put("mensaje", "Ocurrio un error");
 			model.put("listaSolicitudClase", soliService.listar());
 		}
-		return "listSolicitudClase";
+		return "solicitudclase/listSolicitudClase";
 		}
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
 		model.put("listaSolicitudClase", soliService.listar());
-		return "listSolicitudClase";
+		return "solicitudclase/listSolicitudClase";
 	}
 	
 	@RequestMapping("/irBuscar")
     public String buscar(Model model) {
         model.addAttribute("SolicitudClase", new SolicitudClase());
-        return "buscar";
+        return "solicitudclase/buscar";
     }
 	
 	@RequestMapping("/buscar")
     public String findBy(Map<String, Object> model, @ModelAttribute SolicitudClase solicitudClase)
     throws ParseException{
-        List<SolicitudClase> listaSolicitudClase;
-        Tutor  tutor = new Tutor();
-        tutor.setNombre(solicitudClase.getTutor().getNombre());
+       /* List<SolicitudClase> listaSolicitudClase;
+        CursoTutor  cursotutor = new CursoTutor();
+        cursotutor.setTutor(setNombre(solicitudClase.getCursoTutor().getTutor().getNombre()));
         solicitudClase.setTutor(tutor);
-        listaSolicitudClase = soliService.listarNombreTutor(solicitudClase.getTutor().getNombre());
+        listaSolicitudClase = soliService.buscarNombreTutor(solicitudClase.getTutor().getNombre());
         if(listaSolicitudClase.isEmpty()) {
-        	listaSolicitudClase = soliService.listarNombreCurso(solicitudClase.getTutor().getNombre());
+        	listaSolicitudClase = soliService.buscarNombreCurso(solicitudClase.getCursoTutor().getCurso().getNombreCurso());
         }
         if (listaSolicitudClase.isEmpty()) {
             model.put("mensaje", "No se encontraron coincidencias");
         }
-        model.put("listaSolicitudClase", listaSolicitudClase);
-        return "buscar";
+        model.put("listaSolicitudClase", listaSolicitudClase);*/
+        return "solicitudclase/buscar";
     }
 
 	

@@ -4,6 +4,7 @@ package pe.edu.upc.spring.service;
 import java.util.List;
 import java.util.Optional;
 
+
 import pe.edu.upc.spring.model.SolicitudClase;
 
 public interface ISolicitudClaseService {
@@ -13,7 +14,7 @@ public interface ISolicitudClaseService {
 	public void eliminar(int idSolicitudClase);
 	public Optional<SolicitudClase> listarId(int idSolicitudClase);
 	List<SolicitudClase> listar();
-	List<SolicitudClase> listarNombreTutor(String nombre);
-	List<SolicitudClase> listarNombreCurso(String nombreCurso);
+	List<SolicitudClase> buscarNombreTutor(String nombre);
+	List<SolicitudClase> buscarNombreCurso(String nombreCurso);
 	
 }
