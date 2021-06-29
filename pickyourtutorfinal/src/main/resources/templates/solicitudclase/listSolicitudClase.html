@@ -90,7 +90,7 @@
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item"
-							th:href="@{/solicitar}">Solicitar Tutor&iacute;a</a>
+							th:href="@{/solicitudclase/listar}">Solicitar Tutor&iacute;a</a>
 					</div>
 				</div>
 				</li>
@@ -165,8 +165,8 @@
 						</thead>
 						<tbody>
 								<tr th:each="mp: ${listaSolicitudClase}">
-									<td th:text="${mp.tutor.nombretutor}"></td>
-									<td th:text="${mp.cursotutor.curso.nombre_curso}"></td>
+									<td th:text="${mp.cursoTutor.tutor.nombre}"></td>
+									<td th:text="${mp.cursoTutor.curso.nombreCurso}"></td>
 									<td th:text="${mp.diaClase}"></td>
 									<td th:text="${mp.horaClase}"></td>
 									<td th:text="${mp.fechaClase}"></td>

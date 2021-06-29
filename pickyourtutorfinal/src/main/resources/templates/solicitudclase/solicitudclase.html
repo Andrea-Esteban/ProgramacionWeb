@@ -93,7 +93,7 @@
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item"
-							th:href="@{/solicitar}">Solicitar Tutor&iacute;a</a>
+							th:href="@{solicitudclase/listar}">Solicitar Tutor&iacute;a</a>
 					</div>
 				</div>
 				</li>
@@ -146,28 +146,20 @@
 					<input type="text" class="form-control" th:field="*{idSolicitudClase}"></input>
 					
 					<div class="form-group">
-					
-						<label for=metodoPago>TUTOR: </label>
-						<select
-							class="form-control" th:field="*{cursoTutor.tutor.idTutor}">
-
-							<option th:each="m: ${listaCursoTutor}" th:value="${m.cursoTutor.tutor.idTutor}"
-								th:text="${m.cursoTutor.tutor.nombre}"
-								th:selected="(${m.tutor.idTutor} == *{cursoTutor.tutor.idTutor})"></option>
-						</select>
-						
+										
 						<label for=metodoPago>NOMBRE DEL CURSO: </label>
 						<select
-							class="form-control" th:field="*{cursoTutor.curso.idCurso}">
+							class="form-control" th:field="*{cursoTutor.idCursoTutor}">
 
-							<option th:each="c: ${listaCursoTutor}" th:value="${c.cursotutor.curso.idCurso}"
-								th:text="${c.cursoTutor.curso.nombreCurso}"
-								th:selected="(${c.curso.idCurso} == *{cursoTutor.curso.idCurso})"></option>
+							<option th:each="c: ${listaCursoTutor}" th:value="${c.idCursoTutor}"
+
+								th:text="${c.curso.nombreCurso} + ' - ' + ${c.tutor.nombre}"
+								th:selected="(${c.idCursoTutor} == *{cursoTutor.idCursoTutor})"></option>
 						</select>
 						
 					<label for="diaClase">DIA:</label> <input
-						type="date" th:field="*{diaClase}" class="form-control"
-						id="fecha"></input>
+						type="text" th:field="*{diaClase}" class="form-control"
+						id="diaClase"></input>
 
 					<div class="alert alert-danger"
 						th:if="${#fields.hasErrors('diaClase')}"
@@ -186,8 +178,8 @@
 						id="fechaClase"></input>
 
 					<div class="alert alert-danger"
-						th:if="${#fields.hasErrors('fecha')}"
-						th:errors="*{fecha}"></div>
+						th:if="${#fields.hasErrors('fechaClase')}"
+						th:errors="*{fechaClase}"></div>
 						
 						<label 	for="horasCurso">HORAS POR CURSO:</label> 
 						<input type="text" th:field="*{horasCurso}" class="form-control" id="horasCurso"></input>

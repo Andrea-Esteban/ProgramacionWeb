@@ -42,11 +42,6 @@ public class SolicitudClase implements Serializable{
     @JoinColumn(name="idCursoTutor", nullable=false)
     private CursoTutor cursoTutor;
     
-    /*@ManyToOne
-    @JoinColumn(name = "idTutor", nullable = false)
-    private Tutor tutor;*/
-    
-    
 
     public SolicitudClase() {
         super();
@@ -62,7 +57,6 @@ public class SolicitudClase implements Serializable{
         this.fechaClase = fechaClase;
         this.horasCurso = horasCurso;
         this.cursoTutor = cursoTutor;
-       /* this.tutor = tutor;*/
     }
 
     public int getIdSolicitudClase() {
@@ -112,15 +106,6 @@ public class SolicitudClase implements Serializable{
     public void setCursoTutor(CursoTutor cursoTutor) {
         this.cursoTutor = cursoTutor;
     }
-/*
-    public Tutor getTutor() {
-        return tutor;
-    }
 
-    public void setTutor(Tutor tutor) {
-        this.tutor = tutor;
-    }
-
-*/
 
 }

@@ -3,13 +3,11 @@ package pe.edu.upc.spring.model;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -47,15 +45,7 @@ public class Tutor implements Serializable{
 	
 	@Column(name="horario_disponible", nullable=false, length=60)
 	private String horario_disponible;
-
-	@OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL)
-	private Set<SolicitudClase> solicitudClases;
 	
-	@OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL)
-	private Set<CursoTutor> cursoTutores;
-	
-	@OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL)
-	private Set<ResenaTutor> resenaTutores;
 	
 	public Tutor() {
 		super();
@@ -75,9 +65,7 @@ public class Tutor implements Serializable{
 		this.nombre_uni = nombre_uni;
 		this.carrera_uni = carrera_uni;
 		this.horario_disponible = horario_disponible;
-		this.solicitudClases = solicitudClases;
-		this.cursoTutores = cursoTutores;
-		this.resenaTutores = resenaTutores;
+
 	}
 
 	public int getIdTutor() {
@@ -160,28 +148,6 @@ public class Tutor implements Serializable{
 		this.horario_disponible = horario_disponible;
 	}
 
-	public Set<SolicitudClase> getSolicitudClases() {
-		return solicitudClases;
-	}
 
-	public void setSolicitudClases(Set<SolicitudClase> solicitudClases) {
-		this.solicitudClases = solicitudClases;
-	}
-
-	public Set<CursoTutor> getCursoTutores() {
-		return cursoTutores;
-	}
-
-	public void setCursoTutores(Set<CursoTutor> cursoTutores) {
-		this.cursoTutores = cursoTutores;
-	}
-
-	public Set<ResenaTutor> getResenaTutores() {
-		return resenaTutores;
-	}
-
-	public void setResenaTutores(Set<ResenaTutor> resenaTutores) {
-		this.resenaTutores = resenaTutores;
-	}
 
 }

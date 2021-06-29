@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -47,7 +46,7 @@ public class Pago implements Serializable{
 	@JoinColumn(name="idMetodo", nullable=false)
 	private MetodoPago metodoPago;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="idSolicitudClase", nullable=false)
 	private SolicitudClase solicitudClase;
 	
