@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="layout/layout :: head">
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="layout/layout :: head">
+		
 		<meta charset="ISO-8859-1"></meta>
 		
-		<title>PAGO</title>
+		<title>SOLICITUD DE CLASE</title>
 		
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		
@@ -16,10 +17,12 @@
 			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
 		</script>
 		
-		<script type="text/javascript" th:src="@{/js/pago.js}"></script>
-</head>
-<body>
-	<div id="wrapper">
+		<script type="text/javascript" th:src="@{/js/solicituddeclase.js}"></script>
+
+	</head>
+	
+	<body>
+<div id="wrapper">
 
 		<ul class="navbar-nav sidebar sidebar-dark accordion"
 			id="accordionSidebar" style="background-color: #5CB1EE;">
@@ -94,7 +97,6 @@
 					</div>
 				</div>
 				</li>
-
 			<hr class="sidebar-divider">
 
 		</ul>
@@ -120,8 +122,8 @@
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="userDropdown" style="background: rgb(117, 168, 244)">
-								<a class="dropdown-item"
-									th:href="@{/login}" style="background: #BEE4FF"> <i
+								<a class="dropdown-item" th:href="@{/login}"
+									style="background: #BEE4FF"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-white"></i> <span
 									class="text-white">Cerrar sesi&oacute;n</span>
 								</a>
@@ -132,51 +134,90 @@
 
 
 				<div class="container-fluid">
-					<h1 class="h3 mb-4 text-gray-800">HISTORIAL DE PAGOS</h1>
+					<form th:action="@{/solicitudclase/registrar}" method="post" th:object="${solicitudclase}">
+						<div class="form-row col-6">
+							<div class="form-group col-md-12">
+								<h2 class="m-0 font-weight-bold text-dark">REGISTRO DE
+									SOLICITUD CLASE</h2>
+							</div>
+							<div class="form-group">
+					
+					<label for="idSolicitudClase">ID:</label> 
+					<input type="text" class="form-control" th:field="*{idSolicitudClase}"></input>
+					
+					<div class="form-group">
+					
+						<label for=metodoPago>TUTOR: </label>
+						<select
+							class="form-control" th:field="*{cursoTutor.tutor.idTutor}">
 
-					<a  style="border-bottom-color:blue" th:href="@{/pago/irRegistrar}" id="add-row" 
-							type="button"
-							class="btn btn-primary btn-md left-block"> <span
-							class="glyphicon glyphicon-plus" ></span> AGREGAR
-						</a>
+							<option th:each="m: ${listaCursoTutor}" th:value="${m.cursoTutor.tutor.idTutor}"
+								th:text="${m.cursoTutor.tutor.nombre}"
+								th:selected="(${m.tutor.idTutor} == *{cursoTutor.tutor.idTutor})"></option>
+						</select>
+						
+						<label for=metodoPago>NOMBRE DEL CURSO: </label>
+						<select
+							class="form-control" th:field="*{cursoTutor.curso.idCurso}">
 
-						<table class="table table-bordered table-hover table-striped" id="tab_logic">
+							<option th:each="c: ${listaCursoTutor}" th:value="${c.cursotutor.curso.idCurso}"
+								th:text="${c.cursoTutor.curso.nombreCurso}"
+								th:selected="(${c.curso.idCurso} == *{cursoTutor.curso.idCurso})"></option>
+						</select>
+						
+					<label for="diaClase">DIA:</label> <input
+						type="date" th:field="*{diaClase}" class="form-control"
+						id="fecha"></input>
 
-						<thead class="thead-dark">
-							<tr align="center">
-									<th class="text-center">CODIGO</th>
-									<th class="text-center">MONTO</th>
-									<th class="text-center">FECHA</th>
-									<th class="text-center">NUM.TARJETA</th>
-									<th class="text-center">CADUCIDAD</th>
-									<th class="text-center">COD.SEG</th>
-									<th class="text-center">N.SOLICITUD</th>									
-									<th class="text-center">NOMBRE</th>																		
-									<th class="text-center">METODO</th>
-																																		</tr>
-						</thead>
-						<tbody>
-								<tr th:each="pa: ${listaPagos}">
-									<td th:text="${pa.idPago}"></td>
-									<td th:text="${pa.monto}"></td>
-									<td th:text="${pa.fecha}"></td>
-									<td th:text="${pa.numeroTarj}"></td>
-									<td th:text="${pa.caducidad}"></td>
-									<td th:text="${pa.codigoSeguridad}"></td>
-									<td th:text="${pa.solicitudClase.idSolicitudClase}"></td>
-									<td th:text="${pa.nombreTitular}"></td>
-									<td th:text="${pa.metodoPago.nombre}"></td>									
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('diaClase')}"
+						th:errors="*{diaClase}"></div>
+						
+						<label for="horaClase">HORA:</label> <input
+						type="date" th:field="*{horaClase}" class="form-control"
+						id="horaClase"></input>
 
-								</tr>
-						</tbody>
-					</table>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('horaClase')}"
+						th:errors="*{horaClase}"></div>
+					
+					<label for="fechaClase">FECHA:</label> <input
+						type="date" th:field="*{fechaClase}" class="form-control"
+						id="fechaClase"></input>
 
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('fecha')}"
+						th:errors="*{fecha}"></div>
+						
+						<label 	for="horasCurso">HORAS POR CURSO:</label> 
+						<input type="text" th:field="*{horasCurso}" class="form-control" id="horasCurso"></input>
+	
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('horasCurso')}" 
+							th:errors="*{horasCurso}">
+						</div>
+						
+						
+				
+					</div>
+					
 				</div>
 
 
+						</div>
+						<div class="form-group col-md-12 text-left">
+							<br>
+							<button type="submit" class="btn btn-dark">
+								<i class="fas fa-save"></i> Grabar
+							</button>
+							<a th:href="@{/solicitudclase/listar}"
+								class="btn btn-danger"> Cancelar</a>
+						</div>
+					</form>
+				</div>
+				<footer th:replace="layout/layout :: footer"></footer>
 			</div>
-			<footer th:replace="layout/layout :: footer"></footer>
 		</div>
-	</div>
-</body>
+
+	</body>
+	
 </html>

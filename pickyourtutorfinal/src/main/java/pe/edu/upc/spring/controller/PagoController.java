@@ -15,6 +15,7 @@ import java.text.ParseException;
 import pe.edu.upc.spring.model.Pago;
 import pe.edu.upc.spring.service.IMetodoPagoService;
 import pe.edu.upc.spring.service.IPagoService;
+import pe.edu.upc.spring.service.ISolicitudClaseService;
 
 @Controller
 @RequestMapping("/pago")
@@ -26,6 +27,9 @@ public class PagoController {
 	@Autowired
 	private IMetodoPagoService mService;
 
+	@Autowired
+	private ISolicitudClaseService sCService;
+	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
 		return "bienvenido";
@@ -41,6 +45,7 @@ public class PagoController {
 	public String irPaginaRegistrar(Model model) {
 		model.addAttribute("pago", new Pago());
 		model.addAttribute("listaMetodoPago", mService.listar());
+		model.addAttribute("listaSolicitudClase", sCService.listar());
 		return "pago/pago";
 	}
 
@@ -67,6 +72,7 @@ public class PagoController {
 			return "redirect:/pago/listar";
 		} else {
 			model.addAttribute("listaMetodoPago", mService.listar());
+			model.addAttribute("listaSolicitudClase", sCService.listar());
 			model.addAttribute("pago", objPago);
 			return "pago/pago";
 		}

@@ -15,10 +15,10 @@ import pe.edu.upc.spring.model.SolicitudClase;
 @Repository
 public interface ISolicitudClaseRepository extends JpaRepository<SolicitudClase, Integer> {
 
-	@Query("From SolicitudClase s where s.tutor.nombre like %:nombre%")
+	@Query("From SolicitudClase s where s.cursoTutor.tutor.nombre like %:nombre%")
 	List<SolicitudClase> buscarNombreTutor(@Param("nombre") String nombre);
 	
-	@Query("From SolicitudClase s where s.curso.nombreCurso like %:nombreCurso%")
+	@Query("From SolicitudClase s where s.cursoTutor.curso.nombreCurso like %:nombreCurso%")
 	List<SolicitudClase> buscarNombreCurso(@Param("nombreCurso") String nombreCurso);
 	
 }

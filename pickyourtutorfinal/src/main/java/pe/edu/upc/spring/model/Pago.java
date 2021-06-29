@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -46,13 +47,17 @@ public class Pago implements Serializable{
 	@JoinColumn(name="idMetodo", nullable=false)
 	private MetodoPago metodoPago;
 	
+	@OneToOne
+	@JoinColumn(name="idSolicitudClase", nullable=false)
+	private SolicitudClase solicitudClase;
+	
 	public Pago() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public Pago(int idPago, String monto, Date fecha, String numeroTarj, int caducidad, String nombreTitular,
-			int codigoSeguridad, MetodoPago metodoPago) {
+			int codigoSeguridad, MetodoPago metodoPago, SolicitudClase solicitudClase) {
 		super();
 		this.idPago = idPago;
 		this.monto = monto;
@@ -62,6 +67,7 @@ public class Pago implements Serializable{
 		this.nombreTitular = nombreTitular;
 		this.codigoSeguridad = codigoSeguridad;
 		this.metodoPago = metodoPago;
+		this.solicitudClase = solicitudClase;
 	}
 
 	public int getIdPago() {
@@ -128,7 +134,13 @@ public class Pago implements Serializable{
 		this.metodoPago = metodoPago;
 	}
 
+	public SolicitudClase getSolicitudClase() {
+		return solicitudClase;
+	}
 
+	public void setSolicitudClase(SolicitudClase solicitudClase) {
+		this.solicitudClase = solicitudClase;
+	}
 
 	
 }
