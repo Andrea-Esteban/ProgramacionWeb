@@ -1,7 +1,11 @@
 package pe.edu.upc.spring.controller;
 import java.text.ParseException;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import pe.edu.upc.spring.model.Tutor;
 import pe.edu.upc.spring.service.ITutorService;
 
@@ -39,10 +44,17 @@ public class TutorController {
 	}
 
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Tutor objTutor, BindingResult binRes, Model model) throws ParseException {
+	public String registrar(@Valid @ModelAttribute Tutor objTutor, BindingResult binRes, Model model) throws ParseException {
 		if (binRes.hasErrors())
 			return "tutor/tutor";
-		else {
+		
+		else{
+			boolean existdni = false;
+			List<Tutor> aea=tService.buscarNombreDNI(objTutor.getDni());
+			if (aea.size()>0)  {existdni = true;}
+			if(existdni) {model.addAttribute("mensaje", "ya existe un DNI");	return "redirect:/tutor/irRegistrar";
+}
+			else {
 			boolean flag = tService.insertar(objTutor);
 			if (flag)
 				return "redirect:/tutor/listar";
@@ -50,6 +62,8 @@ public class TutorController {
 				model.addAttribute("mensaje", "Ocurrió un error");
 				return "redirect:/tutor/irRegistrar";
 			}
+			
+		}
 		}
 	}
 
@@ -75,7 +89,7 @@ public class TutorController {
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje", "Ocurrio un error");
-			model.put("listaTutor", tService.listar());
+			model.put("listaTutores", tService.listar());
 		}
 		return "tutor/listTutor";
 		}
@@ -85,4 +99,5 @@ public class TutorController {
 		model.put("listaTutores", tService.listar());
 		return "tutor/listTutor";
 	}
+	
 }

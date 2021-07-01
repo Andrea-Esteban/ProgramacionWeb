@@ -137,7 +137,7 @@
 					<form th:action="@{/resenatutor/registrar}" method="post" th:object="${resenatutor}">
 						<div class="form-row col-6">
 							<div class="form-group col-md-12">
-								<h2 class="m-0 font-weight-bold text-dark">REGISTRO RESEÑAS</h2>
+								<h2 class="m-0 font-weight-bold text-dark">REGISTRO RESE&Ntilde;AS</h2>
 							</div>
 							<div class="form-group">
 					
@@ -153,7 +153,7 @@
 							th:errors="*{valoracion}">
 						</div>
 						
-						<label for=metodoPago>NOMBRE DEL CLIENTE: </label>
+						<label for=cliente.nombre>NOMBRE DEL CLIENTE: </label>
 						<select
 							class="form-control" th:field="*{cliente.idCliente}">
 
@@ -163,7 +163,7 @@
 						</select>
 						
 						
-						<label for=metodoPago>NOMBRE DEL TUTOR: </label>
+						<label for=tutor.nombre>NOMBRE DEL TUTOR: </label>
 						<select
 							class="form-control" th:field="*{tutor.idTutor}">
 

@@ -24,7 +24,6 @@ import pe.edu.upc.spring.model.Tutor;
 //import pe.edu.upc.spring.model.Tutor;
 import pe.edu.upc.spring.service.ISolicitudClaseService;
 import pe.edu.upc.spring.service.ICursoTutorService;
-import pe.edu.upc.spring.service.ITutorService;
 
 @Controller
 @RequestMapping("/solicitudclase")

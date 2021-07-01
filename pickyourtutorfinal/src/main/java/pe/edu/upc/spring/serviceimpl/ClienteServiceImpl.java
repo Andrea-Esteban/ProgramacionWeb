@@ -63,4 +63,6 @@ public class ClienteServiceImpl implements IClienteService {
 	public List<Cliente> buscarNombre(String nombre) {
 		return dCliente.buscarNombre(nombre);
 	}
+
+
 }

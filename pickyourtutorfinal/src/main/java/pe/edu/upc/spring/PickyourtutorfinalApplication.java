@@ -27,6 +27,8 @@ public class PickyourtutorfinalApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		String password = "CLIENTE";
 		String contra = "TUTOR";
+		String contrasena = "ADMIN";
+
 
 		for (int i = 0; i < 2; i++) {
 			String bcryptPassword = passwordEncoder.encode(password);
@@ -35,6 +37,11 @@ public class PickyourtutorfinalApplication implements CommandLineRunner {
 		
 		for (int i = 0; i < 2; i++) {
 			String bcryptPassword = passwordEncoder.encode(contra);
+			System.out.println(bcryptPassword);
+		}
+		
+		for (int i = 0; i < 2; i++) {
+			String bcryptPassword = passwordEncoder.encode(contrasena);
 			System.out.println(bcryptPassword);
 		}
 	}

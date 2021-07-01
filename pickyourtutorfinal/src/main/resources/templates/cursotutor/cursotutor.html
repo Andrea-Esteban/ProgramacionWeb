@@ -139,28 +139,34 @@
 							<div class="form-group col-md-12">
 								<h2 class="m-0 font-weight-bold text-dark">REGISTRO CURSOS</h2>
 							</div>
-							<div class="form-group">
+												
+					<div class="form-group">
 					
 					<label for="idCursoTutor">ID:</label> 
 					<input type="text" class="form-control" th:field="*{idCursoTutor}"></input>
 					
 					<div class="form-group">
 						
-						<label 	for="costoHora">COSTO X HORA:</label> 
-						<input type="text" th:field="*{costoHora}" class="form-control" id="costoHora"></input>
-	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('costoHora')}" 
-							th:errors="*{costoHora}">
+						<div class="form-group">
+								<label for="costoHora">COSTO POR HORA: </label> <input type="text"
+									class="form-control" th:field="*{costoHora}"
+									placeholder="Ingrese su nombre"
+									th:errorclass="'form-control alert-danger'"> <small
+									class="form-text alert-danger"
+									th:if="${#fields.hasErrors('costoHora')}" th:errors="*{costoHora}"></small>
 						</div>
 						
-						<label 	for="nota">NOTA:</label> 
-						<input type="text" th:field="*{nota}" class="form-control" id="nota"></input>
-	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('nota')}" 
-							th:errors="*{nota}">
+						<div class="form-group">
+								<label for="costoHora">NOTA: </label> <input type="text"
+									class="form-control" th:field="*{nota}"
+									placeholder="Ingrese su nombre"
+									th:errorclass="'form-control alert-danger'"> <small
+									class="form-text alert-danger"
+									th:if="${#fields.hasErrors('nota')}" th:errors="*{nota}"></small>
 						</div>
 						
-						<label for=metodoPago>NOMBRE DEL CURSO: </label>
+						
+						<label for=curso.nombreCurso>NOMBRE DEL CURSO: </label>
 						<select
 							class="form-control" th:field="*{curso.idCurso}">
 
@@ -168,7 +174,8 @@
 								th:text="${c.nombreCurso}"
 								th:selected="(${c.idCurso} == *{curso.idCurso})"></option>
 						</select>
-						<label for=metodoPago>NOMBRE DEL TUTOR: </label>
+						
+						<label for=tutor.nombre>NOMBRE DEL TUTOR: </label>
 						<select
 							class="form-control" th:field="*{tutor.idTutor}">
 
@@ -177,6 +184,16 @@
 								th:selected="(${t.idTutor} == *{tutor.idTutor})"></option>
 						</select>
 						
+							<div class="form-group">
+								<label for="horarioDisponible">HORARIO DISPONIBLE: </label> <input type="text"
+									class="form-control" th:field="*{horarioDisponible}"
+									placeholder="Ingrese su horario Disponible"
+									th:errorclass="'form-control alert-danger'"> <small
+									class="form-text alert-danger"
+									th:if="${#fields.hasErrors('horarioDisponible')}" th:errors="*{horarioDisponible}"></small>
+						</div>
+						
+	
 
 					</div>
 					

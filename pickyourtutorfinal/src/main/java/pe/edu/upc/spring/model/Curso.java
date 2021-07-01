@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+
 
 @Entity
 @Table(name = "cursos")
@@ -18,6 +20,7 @@ public class Curso implements Serializable{
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idCurso;
 
+	@NotBlank(message = "Debe ingresar el nombre")
 	@Column(name="nombre_curso", nullable=false, length=50)
 	private String nombreCurso;
 	
@@ -26,7 +29,8 @@ public class Curso implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Curso(int idCurso, String nombreCurso) {
+	public Curso(int idCurso,
+			@NotBlank(message = "Debe ingresar el nombre") String nombreCurso) {
 		super();
 		this.idCurso = idCurso;
 		this.nombreCurso = nombreCurso;
@@ -48,6 +52,6 @@ public class Curso implements Serializable{
 		this.nombreCurso = nombreCurso;
 	}
 
-	
+
 	
 }

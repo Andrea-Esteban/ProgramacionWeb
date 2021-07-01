@@ -33,7 +33,7 @@
 			</a>
 
 			<hr class="sidebar-divider my-0">
-
+			
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded=true
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
@@ -94,7 +94,6 @@
 					</div>
 				</div>
 				</li>
-
 			<hr class="sidebar-divider">
 
 		</ul>
@@ -144,25 +143,23 @@
 
 						<thead class="thead-dark">
 							<tr align="center">
-									<th class="text-center">CODIGO</th>
+									<th class="text-center">C&Oacute;DIGO</th>
 									<th class="text-center">MONTO</th>
 									<th class="text-center">FECHA</th>
 									<th class="text-center">NUM.TARJETA</th>
 									<th class="text-center">CADUCIDAD</th>
-									<th class="text-center">COD.SEG</th>
-									<th class="text-center">N.SOLICITUD</th>									
+									<th class="text-center">ID.SOLICITUD</th>									
 									<th class="text-center">NOMBRE</th>																		
-									<th class="text-center">METODO</th>
+									<th class="text-center">M&Eacute;TODO</th>
 																																		</tr>
 						</thead>
 						<tbody>
 								<tr th:each="pa: ${listaPagos}">
 									<td th:text="${pa.idPago}"></td>
-									<td th:text="${pa.monto}"></td>
+									<td th:text="${pa.solicitudClase.montoTotal}"></td>
 									<td th:text="${pa.fecha}"></td>
 									<td th:text="${pa.numeroTarj}"></td>
 									<td th:text="${pa.caducidad}"></td>
-									<td th:text="${pa.codigoSeguridad}"></td>
 									<td th:text="${pa.solicitudClase.idSolicitudClase}"></td>
 									<td th:text="${pa.nombreTitular}"></td>
 									<td th:text="${pa.metodoPago.nombre}"></td>									

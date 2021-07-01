@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 
 @Entity
@@ -20,6 +22,9 @@ public class MetodoPago implements Serializable {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idMetodo;
 	
+
+	@NotBlank(message = "Debe ingresar su nombre")
+	@Pattern(regexp = "[A-Za-zñ ]+", message="El nombre solo puede tener letras")
 	@Column(name= "nombre", nullable= false, length=50)
 	private String nombre;
 	

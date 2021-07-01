@@ -13,5 +13,5 @@ public interface ICursoService {
 	public void eliminar(int idCliente);
 	public Optional<Curso> listarId(int idCurso);
 	List<Curso> listar();
-	
+
 }

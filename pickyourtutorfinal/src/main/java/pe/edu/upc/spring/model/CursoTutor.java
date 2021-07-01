@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
 
 @Entity
 @Table(name = "cursotutor")
@@ -19,12 +22,18 @@ public class CursoTutor implements Serializable{
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idCursoTutor;
-
+	
+	@NotBlank(message = "Debe ingresar a la nota")
+	@Pattern(regexp = "[0-9]+", message="La nota solo puede tener números")
 	@Column(name="nota", nullable=false, length=2)
 	private String nota;
 	
 	@Column(name="costoPorHora", nullable=false, length=3)
-	private String costoHora;
+	private double costoHora;
+	
+	@NotBlank(message = "Debe ingresar el horaria disponible")
+	@Column(name="horarioDisponible", nullable=false, length=90)
+	private String horarioDisponible;
 
 	@ManyToOne
 	@JoinColumn(name = "idCurso", nullable = false)
@@ -38,21 +47,20 @@ public class CursoTutor implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
-	
 
-	public CursoTutor(int idCursoTutor, String nota, String costoHora, Curso curso, Tutor tutor) {
+	public CursoTutor(int idCursoTutor,
+			@NotBlank(message = "Debe ingresar a la nota") @Pattern(regexp = "[0-9]+", message = "La nota solo puede tener números") String nota,
+			double costoHora,
+			@NotBlank(message = "Debe ingresar el horaria disponible") String horarioDisponible, Curso curso,
+			Tutor tutor) {
 		super();
 		this.idCursoTutor = idCursoTutor;
 		this.nota = nota;
 		this.costoHora = costoHora;
+		this.horarioDisponible = horarioDisponible;
 		this.curso = curso;
 		this.tutor = tutor;
 	}
-
-
 
 	public int getIdCursoTutor() {
 		return idCursoTutor;
@@ -70,12 +78,20 @@ public class CursoTutor implements Serializable{
 		this.nota = nota;
 	}
 
-	public String getCostoHora() {
+	public double getCostoHora() {
 		return costoHora;
 	}
 
-	public void setCostoHora(String costoHora) {
+	public void setCostoHora(double costoHora) {
 		this.costoHora = costoHora;
+	}
+
+	public String getHorarioDisponible() {
+		return horarioDisponible;
+	}
+
+	public void setHorarioDisponible(String horarioDisponible) {
+		this.horarioDisponible = horarioDisponible;
 	}
 
 	public Curso getCurso() {
@@ -94,6 +110,7 @@ public class CursoTutor implements Serializable{
 		this.tutor = tutor;
 	}
 
+	
 	
 
 }

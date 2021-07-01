@@ -1,6 +1,9 @@
 package pe.edu.upc.spring.controller;
 import java.util.Map;
 import java.util.Optional;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,7 +42,7 @@ public class ClienteController {
 	}
 
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Cliente objCliente, BindingResult binRes, Model model) throws ParseException {
+	public String registrar(@Valid @ModelAttribute Cliente objCliente, BindingResult binRes, Model model) throws ParseException {
 		if (binRes.hasErrors())
 			return "cliente/cliente";
 		else {

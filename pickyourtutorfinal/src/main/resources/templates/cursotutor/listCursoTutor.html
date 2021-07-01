@@ -34,7 +34,7 @@
 
 			<hr class="sidebar-divider my-0">
 
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded=true
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
@@ -144,13 +144,14 @@
 
 						<thead class="thead-dark">
 							<tr align="center">
-									<th class="text-center">CODIGO</th>
+									<th class="text-center">C&Oacute;DIGO</th>
 									<th class="text-center">NOTA</th>
 									<th class="text-center">COSTO HORA</th>
 									<th class="text-center">CURSO</th>
+									<th class="text-center">HORARIO DISPONIBLE</th>
 									<th class="text-center">TUTOR</th>
-									<th class="text-center">OPERACION</th>
-									<th class="text-center">OPERACION</th>	
+									<th class="text-center">OPERACI&Oacute;N</th>
+									<th class="text-center">OPERACI&Oacute;N</th>	
 																																		</tr>
 						</thead>
 						<tbody>
@@ -159,10 +160,11 @@
 									<td th:text="${ct.nota}"></td>
 									<td th:text="${ct.costoHora}"></td>
 									<td th:text="${ct.curso.nombreCurso}"></td>
+									<td th:text="${ct.horarioDisponible}"></td>
 									<td th:text="${ct.tutor.nombre}"></td>
 							
 									<td><a th:href="@{/cursotutor/eliminar?id=}+${ct.idCursoTutor}">Eliminar</a></td>
-									<td><a th:href="@{'/cursotutor/modificar/' + ${ct.idCursoTutor}}">Modificar</a></td>	
+									<td><a th:href="@{'/cursotutor/modificar/' + ${ct.idCursoTutor}}">Modificar</a></td>
 								</tr>
 						</tbody>
 					</table>

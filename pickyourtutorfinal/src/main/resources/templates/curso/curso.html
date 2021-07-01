@@ -37,6 +37,7 @@
 
 			<hr class="sidebar-divider my-0">
 
+
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded=true
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
@@ -72,28 +73,28 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/matricula/curso/lista_curso}">Pago</a>
+						<a class="collapse-item" th:href="@{/pago/listar}">Pago</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item"
-							th:href="@{/matricula/matricular/reporte}">M&eacute;todo de Pago</a>
+							th:href="@{/metodopago/listar}">M&eacute;todo de Pago</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item"
-							th:href="@{/resenatutor/listar}}">Rese&ntilde;a a Tutor</a>
+							th:href="@{/resenatutor/listar}">Rese&ntilde;a a Tutor</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item"
-							th:href="@/solicitudclase/listar}">Solicitar Tutor&iacute;a</a>
+							th:href="@{/solicitudclase/listar}">Solicitar Tutor&iacute;a</a>
 					</div>
 				</div>
 				</li>
@@ -138,7 +139,7 @@
 						<div class="form-row col-6">
 							<div class="form-group col-md-12">
 								<h2 class="m-0 font-weight-bold text-dark">REGISTRO DE
-									Cursos</h2>
+									CURSOS</h2>
 							</div>
 							<div class="form-group">
 					
@@ -147,13 +148,16 @@
 					
 					<div class="form-group">
 					
-						<label 	for="nombreCurso">NOMBRE:</label> 
-						<input type="text" th:field="*{nombreCurso}" class="form-control" id="nombreCurso"></input>
-	
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('nombreCurso')}" 
-							th:errors="*{nombreCurso}">
-						</div>
 						
+						<div class="form-group">
+									<label for="nombreCurso">CONTRASE&Ntilde;A: </label> <input
+										type="text" class="form-control" th:field="*{nombreCurso}"
+										placeholder="Ingrese el nombre del curso"
+										th:errorclass="'form-control alert-danger'"> <small
+										class="form-text alert-danger"
+										th:if="${#fields.hasErrors('nombreCurso')}"
+										th:errors="*{nombreCurso}"></small>
+						</div>
 										
 						
 					</div>

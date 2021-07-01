@@ -53,9 +53,9 @@ public class SolicitudClaseServiceImpl implements ISolicitudClaseService {
 	}
 
 	@Override
-	@Transactional(readOnly = true)
-	public List<SolicitudClase> listar() {
-		return dSolicitudClase.findAll();
+	public List<SolicitudClase> listar(){
+		List<SolicitudClase> lista = dSolicitudClase.findAll();
+		return lista;
 	}
 
 

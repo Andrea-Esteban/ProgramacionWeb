@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -23,24 +26,32 @@ public class Pago implements Serializable{
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idPago;
 
-	@Column(name="monto", nullable=false, length=50)
-	private String monto;
 
 	@Column(name="fecha", nullable=false, length=50)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fecha;
 	
+	@NotBlank(message = "Debe ingresar el número de Tarjeta")
+	@Pattern(regexp = "[0-9]+", message="El teléfono solo puede tener números")
+	@Size(min = 16, max = 16, message = "El número de la tarjeta solo debe tener 16 digitos")
 	@Column(name="numero_tarjeta", nullable=false, length=16)
 	private String numeroTarj;
 
+	@NotBlank(message = "Debe ingresar el número de caducidad")
+	@Size(min = 4, max = 4, message = "La fecha de caducidad solo debe tener 4 digitos")
+	@Pattern(regexp = "[0-9]+", message="El teléfono solo puede tener números")
 	@Column(name="caducidad", nullable=false, length=4)
-	private int caducidad;
+	private String caducidad;
 	
+	@NotBlank(message = "Debe ingresar el nombre del titular")
+	@Pattern(regexp = "[A-Za-zñ ]+", message="El nombre solo puede tener letras")
 	@Column(name="nombre_titular", nullable=false, length=50)
 	private String nombreTitular;
 	
+	@Pattern(regexp = "[0-9]+", message="El codigo de Seguridad solo puede tener números")
+	@Size(min = 3, max = 3, message = "El código Seguridad solo debe tener 3 digitos")
 	@Column(name="codigo_seguridad", nullable=false, length=3)
-	private int codigoSeguridad;	
+	private String codigoSeguridad;	
 	
 	@ManyToOne
 	@JoinColumn(name="idMetodo", nullable=false)
@@ -55,11 +66,14 @@ public class Pago implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Pago(int idPago, String monto, Date fecha, String numeroTarj, int caducidad, String nombreTitular,
-			int codigoSeguridad, MetodoPago metodoPago, SolicitudClase solicitudClase) {
+	public Pago(int idPago, Date fecha,
+			@NotBlank(message = "Debe ingresar el número de Tarjeta") @Pattern(regexp = "[0-9]+", message = "El teléfono solo puede tener números") String numeroTarj,
+			@NotBlank(message = "Debe ingresar el número de caducidad") @Size(min = 4, max = 4, message = "La fecha de caducidad solo debe tener 4 digitos") @Pattern(regexp = "[0-9]+", message = "El teléfono solo puede tener números") String caducidad,
+			@NotBlank(message = "Debe ingresar el nombre del titular") @Pattern(regexp = "[A-Za-zñ ]+", message = "El nombre solo puede tener letras") String nombreTitular,
+			@Pattern(regexp = "[0-9]+", message = "El codigo de Seguridad solo puede tener números") @Size(min = 3, max = 3, message = "El código Seguridad solo debe tener 3 digitos") String codigoSeguridad,
+			MetodoPago metodoPago, SolicitudClase solicitudClase) {
 		super();
 		this.idPago = idPago;
-		this.monto = monto;
 		this.fecha = fecha;
 		this.numeroTarj = numeroTarj;
 		this.caducidad = caducidad;
@@ -75,14 +89,6 @@ public class Pago implements Serializable{
 
 	public void setIdPago(int idPago) {
 		this.idPago = idPago;
-	}
-
-	public String getMonto() {
-		return monto;
-	}
-
-	public void setMonto(String monto) {
-		this.monto = monto;
 	}
 
 	public Date getFecha() {
@@ -101,11 +107,11 @@ public class Pago implements Serializable{
 		this.numeroTarj = numeroTarj;
 	}
 
-	public int getCaducidad() {
+	public String getCaducidad() {
 		return caducidad;
 	}
 
-	public void setCaducidad(int caducidad) {
+	public void setCaducidad(String caducidad) {
 		this.caducidad = caducidad;
 	}
 
@@ -117,11 +123,11 @@ public class Pago implements Serializable{
 		this.nombreTitular = nombreTitular;
 	}
 
-	public int getCodigoSeguridad() {
+	public String getCodigoSeguridad() {
 		return codigoSeguridad;
 	}
 
-	public void setCodigoSeguridad(int codigoSeguridad) {
+	public void setCodigoSeguridad(String codigoSeguridad) {
 		this.codigoSeguridad = codigoSeguridad;
 	}
 
@@ -141,5 +147,5 @@ public class Pago implements Serializable{
 		this.solicitudClase = solicitudClase;
 	}
 
-	
+
 }

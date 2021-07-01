@@ -38,33 +38,36 @@
 
 			<hr class="sidebar-divider my-0">
 
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded=true
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/cliente/listar}">Cliente</a>
+						<a class="collapse-item"
+							th:href="@{/cliente/listar}">Cliente</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/tutor/listar}">Tutor</a>
+						<a class="collapse-item"
+							th:href="@{/tutor/listar}">Tutor</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/curso/listar}">Curso</a>
+						<a class="collapse-item"
+							th:href="@{/curso/listar}">Curso</a>
 					</div>
 				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/cursotutor/listar}">Agregar
-							Curso</a>
+						<a class="collapse-item"
+							th:href="@{/cursotutor/listar}">Agregar Curso</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -76,24 +79,25 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/metodopago/listar}">M&eacute;todo
-							de Pago</a>
+						<a class="collapse-item"
+							th:href="@{/metodopago/listar}">M&eacute;todo de Pago</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/resenatutor/listar}">Rese&ntilde;a
-							a Tutor</a>
+						<a class="collapse-item"
+							th:href="@{/resenatutor/listar}">Rese&ntilde;a a Tutor</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{solicitudclase/listar}">Solicitar
-							Tutor&iacute;a</a>
+						<a class="collapse-item"
+							th:href="@{/solicitudclase/listar}">Solicitar Tutor&iacute;a</a>
 					</div>
-				</div></li>
+				</div>
+				</li>
 			<hr class="sidebar-divider">
 
 		</ul>
@@ -147,7 +151,8 @@
 
 								<div class="form-group">
 
-									<label for=metodoPago>METODO DE PAGO: </label> <select
+									
+									<label for=metodoPago>M&Eacute;TODO DE PAGO: </label> <select
 										class="form-control" th:field="*{metodoPago.idMetodo}">
 
 										<option th:each="m: ${listaMetodoPago}"
@@ -155,61 +160,64 @@
 											th:selected="(${m.idMetodo} == *{metodoPago.idMetodo})"></option>
 									</select> 
 									
-									<label for=metodoPago>ID DE LA SOLICITUD: </label> <select
+									<label for=metodoPago>ID DE LA SOLICITUD - MONTO A PAGAR: </label> <select
 										class="form-control"
 										th:field="*{solicitudClase.idSolicitudClase}">
 
 										<option th:each="s: ${listaSolicitudClase}"
 											th:value="${s.idSolicitudClase}"
-											th:text="${s.idSolicitudClase}"
+											th:text="${s.idSolicitudClase} + ' - ' + ${s.montoTotal}"
 											th:selected="(${s.idSolicitudClase} == *{solicitudClase.idSolicitudClase})"></option>
 									</select>
 
-									<label for="monto">MONTO:</label> <input type="text"
-										th:field="*{monto}" class="form-control" id="monto"></input>
+									<div class="form-group ">
+									<label for="fecha">FECHA: </label> <input
+										type="date" class="form-control" th:field="*{fecha}"
+										th:errorclass="'form-control alert-danger'"> <small
+										class="form-text alert-danger"
+										th:if="${#fields.hasErrors('fecha')}"
+										th:errors="*{fecha}"></small>
+								</div>
 
-									<div class="alert alert-danger"
-										th:if="${#fields.hasErrors('monto')}" th:errors="*{monto}">
-									</div>
-
-									<label for="fecha">FECHA:</label> <input type="date"
-										th:field="*{fecha}" class="form-control" id="fecha"></input>
-
-									<div class="alert alert-danger"
-										th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></div>
-
-									<label for="numeroTarj">NUMERO DE TARJETA:</label> <input
-										type="text" th:field="*{numeroTarj}" class="form-control"
-										id="numeroTarj"></input>
-
-									<div class="alert alert-danger"
+								<div class="form-group">
+									<label for="numeroTarj">N&Uacute;MERO DE TARJETA: </label> <input
+										type="text" class="form-control" th:field="*{numeroTarj}"
+										placeholder="Ingrese el numero de la Tarjeta"
+										th:errorclass="'form-control alert-danger'"> <small
+										class="form-text alert-danger"
 										th:if="${#fields.hasErrors('numeroTarj')}"
-										th:errors="*{numeroTarj}"></div>
+										th:errors="*{numeroTarj}"></small>
+								</div>
 
-									<label for="caducidad">CADUCIDAD:</label> <input type="text"
-										th:field="*{caducidad}" class="form-control" id="caducidad"></input>
-
-									<div class="alert alert-danger"
+								<div class="form-group">
+									<label for="caducidad">CADUCIDAD: </label> <input
+										type="text" class="form-control" th:field="*{caducidad}"
+										placeholder="Ingrese el numero de la Tarjeta"
+										th:errorclass="'form-control alert-danger'"> <small
+										class="form-text alert-danger"
 										th:if="${#fields.hasErrors('caducidad')}"
-										th:errors="*{caducidad}"></div>
-
-									<label for="nombreTitular">NOMBRE DEL TITULAR:</label> <input
-										type="text" th:field="*{nombreTitular}" class="form-control"
-										id="nombreTitular"></input>
-
-									<div class="alert alert-danger"
+										th:errors="*{caducidad}"></small>
+								</div>
+								
+								<div class="form-group">
+									<label for="nombreTitular">NOMBRE DEL TITULAR: </label> <input
+										type="text" class="form-control" th:field="*{nombreTitular}"
+										placeholder="Ingrese el nombre del Titular"
+										th:errorclass="'form-control alert-danger'"> <small
+										class="form-text alert-danger"
 										th:if="${#fields.hasErrors('nombreTitular')}"
-										th:errors="*{nombreTitular}"></div>
-
-									<label for="codigoSeguridad">CODIGO DE SEGURIDAD:</label> <input
-										type="text" th:field="*{codigoSeguridad}" class="form-control"
-										id="codigoSeguridad"></input>
-
-									<div class="alert alert-danger"
+										th:errors="*{nombreTitular}"></small>
+								</div>
+					
+								<div class="form-group">
+									<label for="codigoSeguridad">C&Oacute;DIGO DE SEGURIDAD: </label> <input
+										type="text" class="form-control" th:field="*{codigoSeguridad}"
+										placeholder="Ingrese el nombre del Titular"
+										th:errorclass="'form-control alert-danger'"> <small
+										class="form-text alert-danger"
 										th:if="${#fields.hasErrors('codigoSeguridad')}"
-										th:errors="*{codigoSeguridad}"></div>
-
-
+										th:errors="*{codigoSeguridad}"></small>
+								</div>	
 
 								</div>
 

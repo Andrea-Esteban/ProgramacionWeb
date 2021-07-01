@@ -1,6 +1,8 @@
 package pe.edu.upc.spring.controller;
 import java.util.Map;
-import java.util.Optional;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,7 +53,7 @@ public class CursoTutorController {
 	}
 
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute CursoTutor objCursoTutor, BindingResult binRes, Model model) throws ParseException {
+	public String registrar(@Valid @ModelAttribute CursoTutor objCursoTutor, BindingResult binRes, Model model) throws ParseException {
 		if (binRes.hasErrors()) {
 				return "cursotutor/cursotutor";
 		}else {
@@ -67,7 +69,7 @@ public class CursoTutorController {
 
 	@RequestMapping("/modificar/{id}")
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) throws ParseException {
-		Optional<CursoTutor> objCursoTutor = curtuService.listarId(id);
+		CursoTutor objCursoTutor = curtuService.listarId(id).get();
 		if (objCursoTutor == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
 			return "redirect:/cursotutor/listar";

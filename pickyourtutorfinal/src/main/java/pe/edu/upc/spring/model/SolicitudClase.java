@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -23,21 +24,17 @@ public class SolicitudClase implements Serializable{
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int idSolicitudClase;
     
-    
-    @Column(name="dia_clase", nullable=false, length=50)
-    private String diaClase;
-    
-    @Column(name="hora_clase", nullable=false, length=50)
-    private String horaClase;
-    
-
     @Column(name="fecha_clase", nullable=false, length=50)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaClase;
     
+    
     @Column(name="cantidad_de_hora_por_curso", nullable=false, length=50)
-    private String horasCurso;
+    private int horasCurso;
 
+	@Transient
+	private double montoTotal;
+    
     @ManyToOne
     @JoinColumn(name="idCursoTutor", nullable=false)
     private CursoTutor cursoTutor;
@@ -48,64 +45,67 @@ public class SolicitudClase implements Serializable{
         // TODO Auto-generated constructor stub
     }
 
-    public SolicitudClase(int idSolicitudClase, String diaClase, String horaClase, Date fechaClase, String horasCurso,
-            CursoTutor cursoTutor, Tutor tutor) {
-        super();
-        this.idSolicitudClase = idSolicitudClase;
-        this.diaClase = diaClase;
-        this.horaClase = horaClase;
-        this.fechaClase = fechaClase;
-        this.horasCurso = horasCurso;
-        this.cursoTutor = cursoTutor;
-    }
 
-    public int getIdSolicitudClase() {
-        return idSolicitudClase;
-    }
-
-    public void setIdSolicitudClase(int idSolicitudClase) {
-        this.idSolicitudClase = idSolicitudClase;
-    }
-
-    public String getDiaClase() {
-        return diaClase;
-    }
-
-    public void setDiaClase(String diaClase) {
-        this.diaClase = diaClase;
-    }
-
-    public String getHoraClase() {
-        return horaClase;
-    }
-
-    public void setHoraClase(String horaClase) {
-        this.horaClase = horaClase;
-    }
-
-    public Date getFechaClase() {
-        return fechaClase;
-    }
-
-    public void setFechaClase(Date fechaClase) {
-        this.fechaClase = fechaClase;
-    }
-
-    public String getHorasCurso() {
-        return horasCurso;
-    }
-
-    public void setHorasCurso(String horasCurso) {
-        this.horasCurso = horasCurso;
-    }
-
-    public CursoTutor getCursoTutor() {
-        return cursoTutor;
-    }
-
-    public void setCursoTutor(CursoTutor cursoTutor) {
-        this.cursoTutor = cursoTutor;
-    }
+	public SolicitudClase(int idSolicitudClase, Date fechaClase, int horasCurso, double montoTotal,
+			CursoTutor cursoTutor) {
+		super();
+		this.idSolicitudClase = idSolicitudClase;
+		this.fechaClase = fechaClase;
+		this.horasCurso = horasCurso;
+		this.montoTotal = cursoTutor.getCostoHora()*horasCurso;
+		this.cursoTutor = cursoTutor;
+	}
 
 
+	public int getIdSolicitudClase() {
+		return idSolicitudClase;
+	}
+
+
+	public void setIdSolicitudClase(int idSolicitudClase) {
+		this.idSolicitudClase = idSolicitudClase;
+	}
+
+
+	public Date getFechaClase() {
+		return fechaClase;
+	}
+
+
+	public void setFechaClase(Date fechaClase) {
+		this.fechaClase = fechaClase;
+	}
+
+
+	public int getHorasCurso() {
+		return horasCurso;
+	}
+
+
+	public void setHorasCurso(int horasCurso) {
+		this.horasCurso = horasCurso;
+	}
+
+
+	public double getMontoTotal() {
+		return cursoTutor.getCostoHora()*horasCurso;
+	}
+
+
+	public void setMontoTotal(double montoTotal) {
+		this.montoTotal = montoTotal;
+	}
+
+
+	public CursoTutor getCursoTutor() {
+		return cursoTutor;
+	}
+
+
+	public void setCursoTutor(CursoTutor cursoTutor) {
+		this.cursoTutor = cursoTutor;
+	}
+
+
+	
 }

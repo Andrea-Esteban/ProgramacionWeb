@@ -1,7 +1,6 @@
 package pe.edu.upc.spring.controller;
 
 import java.util.Map;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,7 +68,7 @@ public class ResenaTutorController {
 	
 	@RequestMapping("/modificar/{id}")
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) throws ParseException {
-		Optional<ResenaTutor> objResena = cService.listarId(id);
+		ResenaTutor objResena = cService.listarId(id).get();
 		if (objResena == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
 			return "redirect:/resenatutor/listar";

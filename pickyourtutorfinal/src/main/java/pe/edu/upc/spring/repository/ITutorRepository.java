@@ -14,4 +14,7 @@ public interface ITutorRepository extends JpaRepository<Tutor, Integer> {
 
 	@Query("From Tutor t where t.nombre like %:nombre%")
 	List<Tutor> buscarNombre(@Param("nombre") String nombre);
+	
+	@Query("select t From Tutor t where t.dni like %:dni%")
+	List<Tutor> buscarNombreDNI(String dni);
 }

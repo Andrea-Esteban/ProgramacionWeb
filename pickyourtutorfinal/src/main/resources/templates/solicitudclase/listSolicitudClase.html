@@ -146,7 +146,7 @@
 					<a style="border-bottom-color: green"
 						th:href="@{/solicitudclase/irBuscar}" id="add-row" type="button"
 						class="btn btn-primary btn-md left-block"> <span
-						class="glyphicon glyphicon-search"></span>
+						class="glyphicon glyphicon-search"></span>Buscar
 					</a>
 						
 					
@@ -154,23 +154,29 @@
 
 						<thead class="thead-dark">
 							<tr align="center">
+							
+									<th class="text-center">ID</th>
 									<th class="text-center">TUTOR</th>
 									<th class="text-center">CURSO</th>
-									<th class="text-center">DIA</th>
 									<th class="text-center">HORA</th>
 									<th class="text-center">FECHA</th>
 									<th class="text-center">HORAS/C</th>
-		
+									<th class="text-center">COSTO</th>
+									<th class="text-center">MONTO TOTAL</th>
+								
 							</tr>
 						</thead>
 						<tbody>
 								<tr th:each="mp: ${listaSolicitudClase}">
+									<td th:text="${mp.idSolicitudClase}"></td>							
 									<td th:text="${mp.cursoTutor.tutor.nombre}"></td>
 									<td th:text="${mp.cursoTutor.curso.nombreCurso}"></td>
-									<td th:text="${mp.diaClase}"></td>
-									<td th:text="${mp.horaClase}"></td>
+									<td th:text="${mp.cursoTutor.horarioDisponible}"></td>
 									<td th:text="${mp.fechaClase}"></td>
 									<td th:text="${mp.horasCurso}"></td>
+									<td th:text="${mp.cursoTutor.costoHora}"></td>
+									<td th:text="${#numbers.formatDecimal(mp.montoTotal,0,'COMMA',2,'POINT')}"></td>
+									
 								</tr>
 						</tbody>
 					</table>

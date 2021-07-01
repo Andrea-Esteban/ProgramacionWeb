@@ -24,7 +24,7 @@ public class ResenaTutor implements Serializable {
 	private int idResena;
 	
 	@Column(name= "valoracion", nullable= false, length= 10)
-	private int valoracion;
+	private double valoracion;
 	
 	@ManyToOne
 	@JoinColumn(name = "idCliente", nullable = false)
@@ -39,7 +39,7 @@ public class ResenaTutor implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ResenaTutor(int idResena, int valoracion, Cliente cliente, Tutor tutor) {
+	public ResenaTutor(int idResena, double valoracion, Cliente cliente, Tutor tutor) {
 		super();
 		this.idResena = idResena;
 		this.valoracion = valoracion;
@@ -55,11 +55,11 @@ public class ResenaTutor implements Serializable {
 		this.idResena = idResena;
 	}
 
-	public int getValoracion() {
+	public double getValoracion() {
 		return valoracion;
 	}
 
-	public void setValoracion(int valoracion) {
+	public void setValoracion(double valoracion) {
 		this.valoracion = valoracion;
 	}
 
@@ -78,6 +78,8 @@ public class ResenaTutor implements Serializable {
 	public void setTutor(Tutor tutor) {
 		this.tutor = tutor;
 	}
+
+
 
 
 	

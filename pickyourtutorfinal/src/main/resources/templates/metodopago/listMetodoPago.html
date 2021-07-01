@@ -34,7 +34,7 @@
 
 			<hr class="sidebar-divider my-0">
 
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
+						<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded=true
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
@@ -94,7 +94,6 @@
 					</div>
 				</div>
 				</li>
-
 			<hr class="sidebar-divider">
 
 		</ul>
@@ -144,16 +143,18 @@
 
 						<thead class="thead-dark">
 							<tr align="center">
-									<th class="text-center">CODIGO</th>
+									<th class="text-center">C&Oacute;DIGO</th>
 									<th class="text-center">NOMBRE</th>
-		
+									<th class="text-center">OPERACI&Oacute;N</th>
+									<th class="text-center">OPERACI&Oacute;N</th>
 							</tr>
 						</thead>
 						<tbody>
 								<tr th:each="mp: ${listaMetodoPago}">
 									<td th:text="${mp.idMetodo}"></td>
 									<td th:text="${mp.nombre}"></td>
-			
+									<td><a th:href="@{/metodopago/eliminar?id=}+${mp.idMetodo}">Eliminar</a></td>
+									<td><a th:href="@{'/metodopago/modificar/' + ${mp.idMetodo}}">Modificar</a></td>
 								</tr>
 						</tbody>
 					</table>

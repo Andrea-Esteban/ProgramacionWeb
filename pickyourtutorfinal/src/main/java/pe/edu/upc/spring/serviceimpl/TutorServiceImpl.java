@@ -60,7 +60,11 @@ public class TutorServiceImpl implements ITutorService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Tutor> buscarNombre(String nombre) {
-		return dTutor.buscarNombre(nombre);
+	public List<Tutor> buscarNombreDNI(String dni) {
+		List<Tutor> lista = dTutor.buscarNombreDNI(dni);
+		
+		return lista;
 	}
+
+
 }

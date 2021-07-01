@@ -12,5 +12,5 @@ public interface ITutorService {
 	public void eliminar(int idTutor);
 	public Optional<Tutor> listarId(int idTutor);
 	List<Tutor> listar();
-	List<Tutor> buscarNombre(String nombre);
+	List<Tutor> buscarNombreDNI(String dni);
 }

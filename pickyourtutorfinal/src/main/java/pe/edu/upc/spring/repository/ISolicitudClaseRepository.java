@@ -15,6 +15,7 @@ import pe.edu.upc.spring.model.SolicitudClase;
 @Repository
 public interface ISolicitudClaseRepository extends JpaRepository<SolicitudClase, Integer> {
 
+	
 	@Query("From SolicitudClase s where s.cursoTutor.tutor.nombre like %:nombre%")
 	List<SolicitudClase> buscarNombreTutor(@Param("nombre") String nombre);
 	

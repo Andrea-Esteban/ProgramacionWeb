@@ -35,33 +35,36 @@
 
 			<hr class="sidebar-divider my-0">
 
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
+						<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded=true
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/cliente/listar}">Cliente</a>
+						<a class="collapse-item"
+							th:href="@{/cliente/listar}">Cliente</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/tutor/listar}">Tutor</a>
+						<a class="collapse-item"
+							th:href="@{/tutor/listar}">Tutor</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/curso/listar}">Curso</a>
+						<a class="collapse-item"
+							th:href="@{/curso/listar}">Curso</a>
 					</div>
 				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/cursotutor/listar}">Agregar
-							Curso</a>
+						<a class="collapse-item"
+							th:href="@{/cursotutor/listar}">Agregar Curso</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -73,24 +76,25 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/metodopago/listar}">M&eacute;todo
-							de Pago</a>
+						<a class="collapse-item"
+							th:href="@{/metodopago/listar}">M&eacute;todo de Pago</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/resenatutor/listar}">Rese&ntilde;a
-							a Tutor</a>
+						<a class="collapse-item"
+							th:href="@{/resenatutor/listar}">Rese&ntilde;a a Tutor</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{solicitudclase/listar}">Solicitar
-							Tutor&iacute;a</a>
+						<a class="collapse-item"
+							th:href="@{/solicitudclase/listar}">Solicitar Tutor&iacute;a</a>
 					</div>
-				</div></li>
+				</div>
+				</li>
 
 			<hr class="sidebar-divider">
 
@@ -154,27 +158,25 @@
 					</form>
 
 				
-						<table class="table table-bordered table-hover table-striped" id="tab_logic">
+			<table class="table table-bordered table-hover table-striped" id="tab_logic">
 
 						<thead class="thead-dark">
 							<tr align="center">
 									<th class="text-center">TUTOR</th>
+									<th class="text-center">APELLIDO</th>
+									
 									<th class="text-center">CURSO</th>
-									<th class="text-center">DIA</th>
-									<th class="text-center">HORA</th>
-									<th class="text-center">FECHA</th>
-									<th class="text-center">HORAS/C</th>
-		
+
+									<th class="text-center">COSTO</th>								
 							</tr>
 						</thead>
 						<tbody>
 								<tr th:each="mp: ${listaSolicitudClase}">
 									<td th:text="${mp.cursoTutor.tutor.nombre}"></td>
+									<td th:text="${mp.cursoTutor.tutor.apellido}"></td>									
 									<td th:text="${mp.cursoTutor.curso.nombreCurso}"></td>
-									<td th:text="${mp.diaClase}"></td>
-									<td th:text="${mp.horaClase}"></td>
-									<td th:text="${mp.fechaClase}"></td>
-									<td th:text="${mp.horasCurso}"></td>
+									<td th:text="${mp.cursoTutor.costoHora}"></td>
+									
 								</tr>
 						</tbody>
 					</table>
